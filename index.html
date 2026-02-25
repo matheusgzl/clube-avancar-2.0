@@ -136,15 +136,9 @@
     >
       <div class="container mx-auto px-4 flex items-center justify-between">
         <a href="#hero" class="flex items-center gap-2 group">
-          <div
-            class="w-8 h-8 bg-gold rounded flex items-center justify-center font-bold text-black text-sm group-hover:bg-white transition-colors"
-          >
-            CA
-          </div>
-          <span
-            class="font-bold text-sm tracking-widest uppercase text-white group-hover:text-gold transition-colors"
-            >Clube Avançar</span
-          >
+          <!-- Substitua o src abaixo pelo caminho da sua imagem de logo -->
+            <img src="imagens/logo clube avançar.png" alt="Clube Avançar Logo" class="h-10 w-auto object-contain hover:opacity-80 transition-opacity">
+            <span class="font-bold text-sm tracking-widest uppercase text-white group-hover:text-gold transition-colors">Clube Avançar</span> 
         </a>
 
         <!-- Desktop Menu -->
@@ -155,19 +149,20 @@
             >Pilares</a
           >
           <a
-            href="#ambiente"
-            class="menu-link text-xs font-medium text-neutral-400 hover:text-gold transition-colors uppercase tracking-widest"
-            >Ambiente</a
-          >
-          <a
             href="#agenda"
             class="menu-link text-xs font-medium text-neutral-400 hover:text-gold transition-colors uppercase tracking-widest"
             >Agenda</a
           >
+          
           <a
             href="#encontros"
             class="menu-link text-xs font-medium text-neutral-400 hover:text-gold transition-colors uppercase tracking-widest"
             >Encontros</a
+          >
+          <a
+            href="#ambiente"
+            class="menu-link text-xs font-medium text-neutral-400 hover:text-gold transition-colors uppercase tracking-widest"
+            >Ambiente</a
           >
           <a
             href="#eventos"
@@ -175,12 +170,12 @@
             >Eventos</a
           >
           <a
-            href="#planos"
+            href="#contato"
             class="menu-link text-xs font-medium text-neutral-400 hover:text-gold transition-colors uppercase tracking-widest"
-            >Planos</a
+            >Contato</a
           >
           <a
-            href="#contato"
+            href="#planos"
             class="px-4 py-1.5 border border-gold/50 text-gold text-xs font-bold uppercase tracking-widest hover:bg-gold hover:text-black transition-all rounded-lg"
             >Membro</a
           >
@@ -316,12 +311,6 @@
         >
           <span class="relative z-10">Quero Evoluir com Estrutura</span>
         </button>
-        <div
-          class="absolute bottom-8 flex flex-col items-center gap-2 text-neutral-500 text-xs tracking-widest uppercase animate-bounce"
-        >
-          <span>Scroll para decolar</span>
-          <i data-lucide="chevron-down" class="w-4 h-4"></i>
-        </div>
       </div>
     </section>
 
@@ -1682,21 +1671,33 @@
       function renderEvent() {
         const evt = events[currentEvent];
         carouselContainer.innerHTML = `
-                <div class="grid grid-cols-1 md:grid-cols-2 min-h-[500px] animate-fade-in">
-                    <div class="relative h-[300px] md:h-full group cursor-pointer overflow-hidden bg-black">
-                        <video class="absolute inset-0 w-full h-full object-cover" poster="${evt.poster}" playsinline>
+                <div class="grid grid-cols-1 md:grid-cols-2 min-h-[600px] animate-fade-in items-center gap-8 p-8">
+                    <!-- Vertical Video Card -->
+                    <div class="relative w-full max-w-[320px] aspect-[9/16] mx-auto rounded-xl overflow-hidden cursor-pointer group border border-white/10 hover:border-gold transition-colors shadow-2xl" onclick="togglePlay(this)">
+                        <video class="absolute inset-0 w-full h-full object-cover" poster="${evt.poster}" playsinline loop muted>
                             <source src="${evt.video}" type="video/mp4">
                         </video>
-                        <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors pointer-events-none"></div>
-                        <div class="absolute inset-0 flex items-center justify-center z-10" onclick="this.previousElementSibling.previousElementSibling.play(); this.style.display='none'">
-                            <div class="w-16 h-16 rounded-full bg-gold/90 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform"><i data-lucide="play" class="text-black fill-black ml-1 w-6 h-6"></i></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-80 pointer-events-none"></div>
+                        
+                        <!-- Mute Button -->
+                        <button class="absolute top-4 right-4 w-10 h-10 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-gold hover:text-black transition-colors z-20" onclick="event.stopPropagation(); toggleMute(this)">
+                            <i data-lucide="volume-x" class="w-5 h-5"></i>
+                        </button>
+                        
+                        <!-- Play Button Overlay -->
+                        <div class="absolute inset-0 flex items-center justify-center z-10 play-btn transition-opacity duration-300">
+                            <div class="w-16 h-16 rounded-full bg-gold/90 flex items-center justify-center shadow-[0_0_30px_rgba(198,168,90,0.4)] group-hover:scale-110 transition-transform"><i data-lucide="play" class="text-black fill-black ml-1 w-6 h-6"></i></div>
                         </div>
                     </div>
-                    <div class="p-8 md:p-12 flex flex-col justify-center bg-neutral-900/50">
-                        <h3 class="text-2xl md:text-3xl font-bold text-white mb-2 leading-tight">${evt.title}</h3>
-                        <p class="text-gold font-medium mb-6 uppercase tracking-wide text-sm">${evt.subtitle}</p>
-                        <p class="text-neutral-400 leading-relaxed mb-8">${evt.desc}</p>
-                        <button class="flex items-center gap-2 text-gold font-bold text-sm tracking-widest uppercase hover:text-white transition-colors group w-fit">Assista ao vídeo <i data-lucide="arrow-up-right" class="w-4 h-4"></i></button>
+
+                    <!-- Content -->
+                    <div class="flex flex-col justify-center text-left">
+                        <h3 class="text-3xl md:text-4xl font-serif font-bold text-white mb-2 leading-tight">${evt.title}</h3>
+                        <p class="text-gold font-medium mb-6 uppercase tracking-wide text-sm font-sans">${evt.subtitle}</p>
+                        <p class="text-neutral-400 leading-relaxed mb-8 text-lg">${evt.desc}</p>
+                        <button class="flex items-center gap-2 text-gold font-bold text-sm tracking-widest uppercase hover:text-white transition-colors group w-fit">
+                            Garantir Presença <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                        </button>
                     </div>
                 </div>
             `;
@@ -1729,57 +1730,49 @@
           name: "Carlos Silva",
           role: "CEO Tech",
           video: "videos/depoimento cafe lalau.mp4",
-          poster:
-            "imagens/placeholder_cafe_lalau.png",
+          poster: "imagens/placeholder_cafe_lalau.png",
         },
         {
           name: "Ana Souza",
           role: "Diretora",
           video: "videos/depoimento Gui.mp4",
-          poster:
-            "imagens/placeholder_gui.png",
+          poster: "imagens/placeholder_gui.png",
         },
         {
           name: "Roberto Lima",
           role: "Fundador",
           video: "videos/depoimento hiped invest.mp4",
-          poster:
-            "imagens/placeholder_hiped.png",
+          poster: "imagens/placeholder_hiped.png",
         },
         {
           name: "Julia Santos",
           role: "Investidora",
           video: "videos/depoimento isaias pires.mp4",
-          poster:
-            "imagens/placeholder_isaias_pires.png",
+          poster: "imagens/placeholder_isaias_pires.png",
         },
         {
           name: "Pedro Costa",
           role: "Agro",
           video: "videos/depoimento leo marião.mp4",
-          poster:
-            "imagens/placeholder_leo.png",
+          poster: "imagens/placeholder_leo.png",
         },
         {
           name: "Mariana Dias",
           role: "Startups",
           video: "videos/depoimento Luiz otavio.mp4",
-          poster:
-            "imagens/placeholder_luis_otavio.png",
+          poster: "imagens/placeholder_luis_otavio.png",
         },
         {
           name: "Lucas Ferreira",
           role: "Indústria",
           video: "videos/Depoimento Rogerio Vale.mp4",
-          poster:
-            "imagens/placeholder_rogerio_vale.png",
+          poster: "imagens/placeholder_rogerio_vale.png",
         },
         {
           name: "Fernanda Lima",
           role: "Saúde",
           video: "videos/sobre a inauguração.mp4",
-          poster:
-            "imagens/placeholder_sobre.png",
+          poster: "imagens/placeholder_sobre.png",
         },
       ];
 
