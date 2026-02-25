@@ -1,895 +1,1882 @@
 <!doctype html>
-<html lang="pt-BR" class="scroll-smooth">
+<html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Clube Avançar | O ambiente certo acelera resultados</title>
-
-    <!-- Tailwind CSS -->
+    <title>Clube Avançar</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;600;700;800&display=swap"
       rel="stylesheet"
     />
-
+    <script src="https://unpkg.com/lucide@latest"></script>
     <script>
       tailwind.config = {
         theme: {
           extend: {
-            colors: {
-              gold: {
-                light: "#F4D03F",
-                DEFAULT: "#D4AF37",
-                dark: "#996515",
-              },
-              navy: {
-                light:
-                  "#121212" /* Alterado para tom de preto suave (cartões) */,
-                DEFAULT: "#000000" /* Alterado para preto puro (fundo) */,
-                dark: "#050505" /* Alterado para preto profundo (footer) */,
-              },
-              neonBlue: "#D4AF37" /* Alterado para Dourado */,
-              brandGreen: "#39b51f",
-            },
             fontFamily: {
               sans: ["Inter", "sans-serif"],
               serif: ["Playfair Display", "serif"],
             },
-            animation: {
-              "pulse-gold":
-                "pulse-gold 2s cubic-bezier(0.4, 0, 0.6, 1) infinite",
-              "pulse-neon": "pulse-neon 4s ease-in-out infinite",
+            colors: {
+              gold: "#C6A85A",
+              "gold-light": "#E5C56F",
+              "gold-neon": "#FFD000",
             },
-            keyframes: {
-              "pulse-gold": {
-                "0%, 100%": { opacity: 1, transform: "scale(1)" },
-                "50%": {
-                  opacity: 0.7,
-                  transform: "scale(1.05)",
-                  boxShadow: "0 0 20px #D4AF37",
-                },
-              },
-              "pulse-neon": {
-                "0%, 100%": {
-                  opacity: 0.3,
-                  transform: "scale(1) translate(-50%, -50%)",
-                },
-                "50%": {
-                  opacity: 0.5,
-                  transform: "scale(1.1) translate(-45%, -45%)",
-                },
-              },
+            animation: {
+              "spin-slow": "spin 10s linear infinite",
+              "spin-reverse-slow": "spin 15s linear infinite reverse",
+              "pulse-slow": "pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite",
             },
           },
         },
       };
     </script>
-
     <style>
       body {
-        background-color: #000000; /* Preto puro */
-        color: white;
+        background-color: #000;
+        color: #fff;
         overflow-x: hidden;
+        scroll-behavior: smooth;
+      }
+      html {
+        scroll-behavior: smooth;
+      } /* Ensure smooth scroll on html element too */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #1a1a1a;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #333;
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #c6a85a;
+      }
+      .fade-in-up {
+        opacity: 0;
+        transform: translateY(30px);
+        transition:
+          opacity 0.8s ease-out,
+          transform 0.8s ease-out;
+      }
+      .fade-in-up.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .slide-in-left {
+        opacity: 0;
+        transform: translateX(-100px);
+        transition:
+          opacity 1s ease-out,
+          transform 1s ease-out;
+      }
+      .slide-in-left.visible {
+        opacity: 1;
+        transform: translateX(0);
+      }
+      .slide-in-right {
+        opacity: 0;
+        transform: translateX(100px);
+        transition:
+          opacity 1s ease-out,
+          transform 1s ease-out;
+      }
+      .slide-in-right.visible {
+        opacity: 1;
+        transform: translateX(0);
+      }
+      .text-glow {
+        text-shadow: 0 0 20px rgba(198, 168, 90, 0.5);
       }
 
-      .gold-text {
-        background: linear-gradient(to right, #d4af37, #f4d03f, #996515);
-        background-clip: text;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-      }
-
-      .glass-nav {
-        background: rgba(0, 0, 0, 0.85); /* Preto com transparência */
-        backdrop-filter: blur(10px);
-        border-bottom: 1px solid rgba(212, 175, 55, 0.15);
-      }
-
-      .hero-section {
-        height: 100vh;
-        width: 100%;
+      /* Menu Link Underline Animation */
+      .menu-link {
         position: relative;
-        overflow: hidden;
       }
-
-      .neon-glow-behind {
-        /* Glow dourado */
-        background: radial-gradient(
-          circle,
-          rgba(212, 175, 55, 0.15) 0%,
-          rgba(0, 0, 0, 0) 70%
-        );
-        filter: blur(80px);
-      }
-
-      .reels-container::-webkit-scrollbar {
-        display: none;
-      }
-      .reels-container {
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-      }
-
-      .reels-card {
-        flex: 0 0 auto;
-        width: 260px;
-        height: 460px;
-        transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      }
-
-      @media (min-width: 768px) {
-        .reels-card {
-          width: 290px;
-          height: 520px;
-        }
-      }
-
-      .reels-card:hover {
-        transform: scale(1.02);
-      }
-
-      .video-controls-overlay {
-        opacity: 0;
-        transition: opacity 0.3s ease;
-      }
-      .reels-card:hover .video-controls-overlay {
-        opacity: 1;
-      }
-
-      /* Play indicator refined to follow the reference image: no background circle */
-      .paused-indicator {
-        opacity: 0;
-        transform: scale(0.6);
-        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      }
-      .is-paused .paused-indicator {
-        opacity: 1;
-        transform: scale(1);
-      }
-
-      .btn-green-glow {
-        box-shadow: 0 0 15px rgba(57, 181, 31, 0.3);
-      }
-      .btn-green-glow:hover {
-        box-shadow: 0 0 25px rgba(57, 181, 31, 0.6);
-      }
-
-      /* Sparkle Animation for Hero Background */
-      .sparkle {
+      .menu-link::after {
+        content: "";
         position: absolute;
-        border-radius: 50%;
-        background-color: white;
-        opacity: 0;
-        animation: sparkle-anim ease-in-out infinite;
-        pointer-events: none;
+        width: 0;
+        height: 1px;
+        bottom: -2px;
+        left: 0;
+        background-color: #c6a85a;
+        transition: width 0.3s ease;
+      }
+      .menu-link:hover::after {
+        width: 100%;
       }
 
-      .sparkle.gold {
-        background-color: #d4af37;
-        box-shadow: 0 0 4px #d4af37;
+      /* Video Controls Overlay */
+      .video-overlay {
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
       }
 
-      @keyframes sparkle-anim {
-        0%,
+      /* 3D Rocket Animation */
+      @keyframes spin-y {
+        0% {
+          transform: rotateY(0deg);
+        }
         100% {
-          opacity: 0;
-          transform: scale(0);
+          transform: rotateY(360deg);
         }
-        50% {
-          opacity: var(--max-opacity);
-          transform: scale(1);
-        }
+      }
+      .animate-spin-y {
+        animation: spin-y 8s linear infinite;
       }
     </style>
   </head>
-  <body class="font-sans">
-    <!-- NAVIGATION -->
+  <body class="selection:bg-gold selection:text-black">
+    <!-- Navbar -->
     <nav
-      id="navbar"
-      class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 py-6"
+      class="fixed top-0 left-0 right-0 z-50 bg-black border-b border-white/10 py-3"
     >
-      <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
-        <a href="#" class="flex items-center">
-          <img
-            src="imagens/Logo 1.png"
-            alt="Clube Avançar Logo"
-            class="h-10 md:h-12 w-auto object-contain"
-          />
+      <div class="container mx-auto px-4 flex items-center justify-between">
+        <a href="#hero" class="flex items-center gap-2 group">
+          <div
+            class="w-8 h-8 bg-gold rounded flex items-center justify-center font-bold text-black text-sm group-hover:bg-white transition-colors"
+          >
+            CA
+          </div>
+          <span
+            class="font-bold text-sm tracking-widest uppercase text-white group-hover:text-gold transition-colors"
+            >Clube Avançar</span
+          >
         </a>
 
-        <div class="hidden md:flex items-center gap-10">
+        <!-- Desktop Menu -->
+        <div class="hidden lg:flex items-center gap-6">
           <a
-            href="#benefits"
-            class="text-sm font-medium hover:text-gold transition-colors"
-            >Benefícios</a
+            href="#pilares"
+            class="menu-link text-xs font-medium text-neutral-400 hover:text-gold transition-colors uppercase tracking-widest"
+            >Pilares</a
+          >
+          <a
+            href="#ambiente"
+            class="menu-link text-xs font-medium text-neutral-400 hover:text-gold transition-colors uppercase tracking-widest"
+            >Ambiente</a
           >
           <a
             href="#agenda"
-            class="text-sm font-medium hover:text-gold transition-colors"
+            class="menu-link text-xs font-medium text-neutral-400 hover:text-gold transition-colors uppercase tracking-widest"
             >Agenda</a
           >
           <a
-            href="#plans"
-            class="text-sm font-medium hover:text-gold transition-colors"
+            href="#encontros"
+            class="menu-link text-xs font-medium text-neutral-400 hover:text-gold transition-colors uppercase tracking-widest"
+            >Encontros</a
+          >
+          <a
+            href="#eventos"
+            class="menu-link text-xs font-medium text-neutral-400 hover:text-gold transition-colors uppercase tracking-widest"
+            >Eventos</a
+          >
+          <a
+            href="#planos"
+            class="menu-link text-xs font-medium text-neutral-400 hover:text-gold transition-colors uppercase tracking-widest"
             >Planos</a
           >
-          <button
-            class="px-6 py-2 bg-gold text-navy font-bold text-xs uppercase tracking-widest hover:bg-white transition-all rounded-sm"
+          <a
+            href="#contato"
+            class="px-4 py-1.5 border border-gold/50 text-gold text-xs font-bold uppercase tracking-widest hover:bg-gold hover:text-black transition-all rounded-lg"
+            >Membro</a
           >
-            Entrar no Clube
-          </button>
         </div>
 
-        <button class="md:hidden text-white">
-          <svg
-            class="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M4 6h16M4 12h16m-7 6h7"
-            />
-          </svg>
+        <!-- Mobile Menu Button -->
+        <button
+          id="mobile-menu-btn"
+          class="lg:hidden text-white hover:text-gold transition-colors"
+        >
+          <i data-lucide="menu" class="w-6 h-6"></i>
         </button>
       </div>
     </nav>
 
-    <!-- HERO SECTION -->
+    <!-- Mobile Menu Overlay & Drawer -->
+    <div
+      id="mobile-menu-overlay"
+      class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[60] hidden transition-opacity duration-300 opacity-0"
+    ></div>
+    <div
+      id="mobile-menu-drawer"
+      class="fixed top-0 right-0 h-full w-3/4 max-w-xs bg-black border-l border-white/10 z-[70] transform translate-x-full transition-transform duration-300 flex flex-col shadow-2xl"
+    >
+      <div class="p-4 flex justify-end border-b border-white/10">
+        <button id="close-menu-btn" class="text-white hover:text-gold">
+          <i data-lucide="x" class="w-6 h-6"></i>
+        </button>
+      </div>
+      <div class="flex flex-col p-6 gap-6">
+        <a
+          href="#hero"
+          class="mobile-link text-white hover:text-gold hover:underline underline-offset-4 uppercase tracking-widest text-sm font-medium"
+          >Início</a
+        >
+        <a
+          href="#pilares"
+          class="mobile-link text-white hover:text-gold hover:underline underline-offset-4 uppercase tracking-widest text-sm font-medium"
+          >Pilares</a
+        >
+        <a
+          href="#ambiente"
+          class="mobile-link text-white hover:text-gold hover:underline underline-offset-4 uppercase tracking-widest text-sm font-medium"
+          >Ambiente</a
+        >
+        <a
+          href="#agenda"
+          class="mobile-link text-white hover:text-gold hover:underline underline-offset-4 uppercase tracking-widest text-sm font-medium"
+          >Agenda</a
+        >
+        <a
+          href="#encontros"
+          class="mobile-link text-white hover:text-gold hover:underline underline-offset-4 uppercase tracking-widest text-sm font-medium"
+          >Encontros</a
+        >
+        <a
+          href="#eventos"
+          class="mobile-link text-white hover:text-gold hover:underline underline-offset-4 uppercase tracking-widest text-sm font-medium"
+          >Eventos</a
+        >
+        <a
+          href="#planos"
+          class="mobile-link text-white hover:text-gold hover:underline underline-offset-4 uppercase tracking-widest text-sm font-medium"
+          >Planos</a
+        >
+        <a
+          href="#contato"
+          class="mobile-link text-gold font-bold uppercase tracking-widest text-sm"
+          >Área do Membro</a
+        >
+      </div>
+    </div>
+
+    <!-- Hero Section -->
     <section
       id="hero"
-      class="hero-section flex items-center justify-center relative"
+      class="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-black pb-20 pt-20"
     >
-      <!-- Ajustado para gradiente dourado suave -->
-      <div
-        id="hero-bg"
-        class="absolute inset-0 opacity-40 pointer-events-none z-0"
-        style="
-          background: radial-gradient(
-            circle at 30% 50%,
-            rgba(212, 175, 55, 0.1) 0%,
-            transparent 60%
-          );
-        "
-      ></div>
-
-      <!-- Sparkles Container -->
-      <div
-        id="hero-stars"
-        class="absolute inset-0 z-0 pointer-events-none overflow-hidden"
-      ></div>
-
-      <div id="hero-text" class="z-30 text-center px-4 max-w-5xl mx-auto">
-        <h1
-          class="text-6xl md:text-8xl lg:text-9xl font-serif font-bold mb-6 tracking-tight leading-none"
-        >
-          Clube <span class="gold-text">Avançar</span>
-        </h1>
-        <p
-          class="text-lg md:text-2xl text-gray-400 font-light max-w-3xl mx-auto tracking-wide leading-relaxed"
-        >
-          O ambiente certo acelera resultados. Conecte-se ao maior hub de
-          negócios e inovação.
-        </p>
-        <div id="scroll-hint" class="mt-12 animate-bounce">
-          <span class="text-xs uppercase tracking-[0.3em] text-gold/60"
-            >↓ Role para descobrir</span
-          >
-        </div>
-      </div>
-
-      <div
-        id="hero-image-wrapper"
-        class="absolute inset-0 z-20 flex items-center justify-start px-6 md:px-0 opacity-0 -translate-x-20 invisible"
-      >
+      <div class="absolute inset-0 z-0">
+        <div class="absolute inset-0 bg-black"></div>
         <div
-          class="relative h-full w-full max-w-[45vw] flex items-center ml-10 md:ml-20"
+          class="absolute inset-0 opacity-80"
+          style="
+            background-image: url(imagens/ChatGPT\ Image\ 25\ de\ fev.\ de\ 2026\,\ 14_59_33.png);
+            background-size: cover;
+            background-position: center bottom;
+            background-repeat: no-repeat;
+          "
+        ></div>
+        <div
+          class="absolute inset-0 bg-gradient-to-b from-black/80 via-black/20 to-black/60"
+        ></div>
+      </div>
+      <div
+        class="relative z-30 text-center px-4 max-w-5xl mx-auto flex flex-col items-center gap-6 mt-16 fade-in-up"
+      >
+        <h1
+          class="text-6xl md:text-8xl font-serif font-bold tracking-tight text-white"
         >
+          Clube <span class="text-gold">Avançar</span>
+        </h1>
+        <h2
+          class="text-lg md:text-2xl font-light text-gold tracking-widest uppercase font-sans"
+        >
+          O Ecossistema de Crescimento Empresarial Contínuo
+        </h2>
+        <div
+          class="relative w-24 h-24 md:w-32 md:h-32 my-8 transition-transform duration-100 perspective-[1000px]"
+          id="rocket-container"
+        >
+          <div id="rocket" class="w-full h-full animate-spin-y preserve-3d">
+            <!-- Rotate -45deg to point up (Lucide rocket points top-right by default) -->
+            <div class="w-full h-full transform -rotate-45">
+              <i
+                data-lucide="rocket"
+                class="w-full h-full text-gold drop-shadow-[0_0_15px_rgba(198,168,90,0.5)]"
+              ></i>
+            </div>
+          </div>
+          <!-- Smoke Effect -->
           <div
-            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] neon-glow-behind opacity-70 pointer-events-none animate-pulse-neon"
+            id="rocket-smoke"
+            class="absolute top-full left-1/2 -translate-x-1/2 w-20 h-32 bg-gradient-to-b from-white/20 to-transparent blur-xl -z-10 opacity-0 transition-opacity duration-500"
           ></div>
-          <!-- Glow dourado atrás da imagem -->
-          <div
-            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-gold-DEFAULT/10 blur-[120px] rounded-full pointer-events-none"
-          ></div>
-          <img
-            src="imagens/f69b2488-04c2-4077-91c1-81d58771233c.png"
-            alt="Hub Avançar"
-            class="relative z-10 h-auto max-h-[70vh] w-auto object-contain drop-shadow-[0_0_50px_rgba(212,175,55,0.15)]"
-          />
+        </div>
+        <button
+          onclick="
+            document
+              .getElementById('problem-solution')
+              .scrollIntoView({ behavior: 'smooth' })
+          "
+          class="group relative px-8 py-4 bg-gold text-black font-bold text-sm md:text-base tracking-[0.2em] uppercase overflow-hidden transition-all hover:bg-white hover:shadow-[0_0_30px_rgba(255,255,255,0.3)] rounded-lg"
+        >
+          <span class="relative z-10">Quero Evoluir com Estrutura</span>
+        </button>
+        <div
+          class="absolute bottom-8 flex flex-col items-center gap-2 text-neutral-500 text-xs tracking-widest uppercase animate-bounce"
+        >
+          <span>Scroll para decolar</span>
+          <i data-lucide="chevron-down" class="w-4 h-4"></i>
         </div>
       </div>
     </section>
 
-    <!-- MAIN CONTENT -->
-    <main class="bg-navy px-4 sm:px-6 lg:px-8 space-y-32 py-24">
-      <!-- BENEFITS -->
-      <section id="benefits" class="max-w-7xl mx-auto py-20 reveal-on-scroll">
-        <div class="text-center mb-20">
-          <span
-            class="text-gold text-xs font-bold uppercase tracking-[0.4em] mb-4 block"
-            >Vantagens exclusivas</span
-          >
-          <h2 class="text-4xl md:text-5xl font-serif font-bold">
-            Por que ser <span class="gold-text">Avançado?</span>
+    <!-- Problem Solution -->
+    <section
+      id="problem-solution"
+      class="py-24 bg-neutral-900 relative overflow-hidden"
+    >
+      <div class="container mx-auto px-4 relative z-10">
+        <div class="text-center mb-16 fade-in-up">
+          <h2 class="text-4xl md:text-5xl font-serif font-bold text-white mb-2">
+            Clube <span class="text-gold">Avançar</span>
           </h2>
-        </div>
-        <div class="grid md:grid-cols-3 gap-10">
-          <div
-            class="relative group bg-navy-light p-10 border border-gold/10 rounded-3xl transition-all duration-500 hover:border-gold/40"
-          >
-            <h3 class="text-2xl font-bold mb-4">Networking</h3>
-            <p class="text-gray-400 leading-relaxed">
-              Conecte-se com quem já trilhou o caminho do sucesso.
-            </p>
-          </div>
-          <div
-            class="relative group bg-navy-light p-10 border border-gold/10 rounded-3xl transition-all duration-500 hover:border-gold/40"
-          >
-            <h3 class="text-2xl font-bold mb-4">Conhecimento</h3>
-            <p class="text-gray-400 leading-relaxed">
-              Acesso a estratégias que não estão disponíveis para o grande
-              público.
-            </p>
-          </div>
-          <div
-            class="relative group bg-navy-light p-10 border border-gold/10 rounded-3xl transition-all duration-500 hover:border-gold/40"
-          >
-            <h3 class="text-2xl font-bold mb-4">Exclusividade</h3>
-            <p class="text-gray-400 leading-relaxed">
-              Experiências e eventos premium pensados para o seu crescimento.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <!-- TESTIMONIALS (REELS) -->
-      <section
-        id="testimonials"
-        class="py-24 bg-navy-light/30 rounded-[3rem] overflow-hidden"
-      >
-        <div class="max-w-7xl mx-auto px-6 text-center mb-20">
-          <h2 class="text-4xl md:text-6xl font-bold text-white mb-6">
-            Depoimentos <span class="gold-text">Reais</span>
-          </h2>
-          <p class="text-gray-400 text-lg max-w-2xl mx-auto">
-            Resultados transformadores de quem faz parte do Clube Avançar.
+          <p class="text-gold text-lg uppercase tracking-widest font-sans">
+            O Ecossistema de Crescimento Empresarial Contínuo
           </p>
         </div>
-
-        <!-- Reels Container: Fixed to 4 items as requested -->
-        <div
-          class="reels-container flex gap-4 md:gap-8 overflow-x-auto px-8 pb-16 snap-x snap-mandatory scroll-smooth justify-start xl:justify-center items-center"
-        >
-          <!-- Reel 1 -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div
-            class="reels-card is-paused group relative rounded-[2.5rem] overflow-hidden bg-black snap-center shadow-[0_20px_50px_rgba(0,0,0,0.5)] cursor-pointer"
-            onclick="togglePlayCard(this)"
-          >
-            <video
-              class="reel-video w-full h-full object-cover"
-              loop
-              muted
-              playsinline
-              preload="auto"
-            >
-              <source src="" type="video/mp4" />
-            </video>
-            <div
-              class="video-controls-overlay absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/60 flex flex-col justify-between p-8"
-            >
-              <div class="flex justify-end">
-                <button
-                  onclick="toggleMuteInCard(this, event)"
-                  class="w-12 h-12 bg-white/10 backdrop-blur-lg rounded-full flex items-center justify-center border border-white/20 hover:bg-white/30 transition-all active:scale-90 shadow-lg"
-                >
-                  <svg
-                    class="mute-icon w-6 h-6 text-white"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77zM3 9v6h4l5 5V4L7 9H3z"
-                    />
-                  </svg>
-                  <svg
-                    class="unmute-icon w-6 h-6 text-white hidden"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77zM3 9v6h4l5 5V4L7 9H3z"
-                    />
-                  </svg>
-                </button>
-              </div>
-              <div
-                class="paused-indicator absolute inset-0 flex items-center justify-center pointer-events-none"
-              >
-                <svg
-                  class="w-16 h-16 text-white fill-current drop-shadow-[0_0_15px_rgba(255,255,255,0.4)]"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M8 5v14l11-7z" />
-                </svg>
-              </div>
-              <div class="text-white">
-                <h4 class="text-lg font-bold">Ricardo Mendes</h4>
-                <p
-                  class="text-xs text-gold font-medium uppercase tracking-widest opacity-80"
-                >
-                  Empresário Digital
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Reel 2 -->
-          <div
-            class="reels-card is-paused group relative rounded-[2.5rem] overflow-hidden bg-black snap-center shadow-[0_20px_50px_rgba(0,0,0,0.5)] cursor-pointer"
-            onclick="togglePlayCard(this)"
-          >
-            <video
-              class="reel-video w-full h-full object-cover"
-              loop
-              muted
-              playsinline
-              preload="auto"
-            >
-              <source
-                src="https://assets.mixkit.co/videos/preview/mixkit-entrepreneur-working-at-his-desk-42517-large.mp4"
-                type="video/mp4"
-              />
-            </video>
-            <div
-              class="video-controls-overlay absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/60 flex flex-col justify-between p-8"
-            >
-              <div class="flex justify-end">
-                <button
-                  onclick="toggleMuteInCard(this, event)"
-                  class="w-12 h-12 bg-white/10 backdrop-blur-lg rounded-full flex items-center justify-center border border-white/20 hover:bg-white/30 transition-all active:scale-90 shadow-lg"
-                >
-                  <svg
-                    class="mute-icon w-6 h-6 text-white"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77zM3 9v6h4l5 5V4L7 9H3z"
-                    />
-                  </svg>
-                  <svg
-                    class="unmute-icon w-6 h-6 text-white hidden"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77zM3 9v6h4l5 5V4L7 9H3z"
-                    />
-                  </svg>
-                </button>
-              </div>
-              <div
-                class="paused-indicator absolute inset-0 flex items-center justify-center pointer-events-none"
-              >
-                <svg
-                  class="w-16 h-16 text-white fill-current drop-shadow-[0_0_15px_rgba(255,255,255,0.4)]"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M8 5v14l11-7z" />
-                </svg>
-              </div>
-              <div class="text-white">
-                <h4 class="text-lg font-bold">Julia Ferraz</h4>
-                <p
-                  class="text-xs text-gold font-medium uppercase tracking-widest opacity-80"
-                >
-                  Expert em E-commerce
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Reel 3 -->
-          <div
-            class="reels-card is-paused group relative rounded-[2.5rem] overflow-hidden bg-black snap-center shadow-[0_20px_50px_rgba(0,0,0,0.5)] cursor-pointer"
-            onclick="togglePlayCard(this)"
-          >
-            <video
-              class="reel-video w-full h-full object-cover"
-              loop
-              muted
-              playsinline
-              preload="auto"
-            >
-              <source
-                src="https://assets.mixkit.co/videos/preview/mixkit-creative-professional-at-the-office-42513-large.mp4"
-                type="video/mp4"
-              />
-            </video>
-            <div
-              class="video-controls-overlay absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/60 flex flex-col justify-between p-8"
-            >
-              <div class="flex justify-end">
-                <button
-                  onclick="toggleMuteInCard(this, event)"
-                  class="w-12 h-12 bg-white/10 backdrop-blur-lg rounded-full flex items-center justify-center border border-white/20 hover:bg-white/30 transition-all active:scale-90 shadow-lg"
-                >
-                  <svg
-                    class="mute-icon w-6 h-6 text-white"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77zM3 9v6h4l5 5V4L7 9H3z"
-                    />
-                  </svg>
-                  <svg
-                    class="unmute-icon w-6 h-6 text-white hidden"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77zM3 9v6h4l5 5V4L7 9H3z"
-                    />
-                  </svg>
-                </button>
-              </div>
-              <div
-                class="paused-indicator absolute inset-0 flex items-center justify-center pointer-events-none"
-              >
-                <svg
-                  class="w-16 h-16 text-white fill-current drop-shadow-[0_0_15px_rgba(255,255,255,0.4)]"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M8 5v14l11-7z" />
-                </svg>
-              </div>
-              <div class="text-white">
-                <h4 class="text-lg font-bold">Arthur Santos</h4>
-                <p
-                  class="text-xs text-gold font-medium uppercase tracking-widest opacity-80"
-                >
-                  Mentor de Negócios
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Reel 4 -->
-          <div
-            class="reels-card is-paused group relative rounded-[2.5rem] overflow-hidden bg-black snap-center shadow-[0_20px_50px_rgba(0,0,0,0.5)] cursor-pointer"
-            onclick="togglePlayCard(this)"
-          >
-            <video
-              class="reel-video w-full h-full object-cover"
-              loop
-              muted
-              playsinline
-              preload="auto"
-            >
-              <source
-                src="https://assets.mixkit.co/videos/preview/mixkit-businesswoman-working-at-her-office-desk-42525-large.mp4"
-                type="video/mp4"
-              />
-            </video>
-            <div
-              class="video-controls-overlay absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/60 flex flex-col justify-between p-8"
-            >
-              <div class="flex justify-end">
-                <button
-                  onclick="toggleMuteInCard(this, event)"
-                  class="w-12 h-12 bg-white/10 backdrop-blur-lg rounded-full flex items-center justify-center border border-white/20 hover:bg-white/30 transition-all active:scale-90 shadow-lg"
-                >
-                  <svg
-                    class="mute-icon w-6 h-6 text-white"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77zM3 9v6h4l5 5V4L7 9H3z"
-                    />
-                  </svg>
-                  <svg
-                    class="unmute-icon w-6 h-6 text-white hidden"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77zM3 9v6h4l5 5V4L7 9H3z"
-                    />
-                  </svg>
-                </button>
-              </div>
-              <div
-                class="paused-indicator absolute inset-0 flex items-center justify-center pointer-events-none"
-              >
-                <svg
-                  class="w-16 h-16 text-white fill-current drop-shadow-[0_0_15px_rgba(255,255,255,0.4)]"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M8 5v14l11-7z" />
-                </svg>
-              </div>
-              <div class="text-white">
-                <h4 class="text-lg font-bold">Marina Oliveira</h4>
-                <p
-                  class="text-xs text-gold font-medium uppercase tracking-widest opacity-80"
-                >
-                  Investidora Anjo
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="flex justify-center mt-12">
-          <button
-            class="px-20 py-6 bg-brandGreen text-white font-extrabold rounded-[2rem] uppercase tracking-[0.2em] text-xl btn-green-glow transition-all active:scale-95 shadow-2xl"
-          >
-            Quero fazer parte
-          </button>
-        </div>
-      </section>
-
-      <!-- AGENDA SECTION -->
-      <section id="agenda" class="max-w-4xl mx-auto py-20 reveal-on-scroll">
-        <div class="text-center mb-16">
-          <h2 class="text-4xl font-serif font-bold">
-            Agenda de <span class="gold-text">Eventos</span>
-          </h2>
-        </div>
-        <div class="space-y-6">
-          <div
-            class="accordion-item active border border-gold/10 rounded-3xl overflow-hidden bg-navy-light/50 p-6 md:p-10 transition-all border-gold/30"
+            class="bg-black/50 border border-white/10 p-8 rounded-xl hover:border-gold/50 transition-colors group fade-in-up delay-100"
           >
             <div
-              class="flex flex-col md:flex-row md:items-center justify-between gap-6"
+              class="w-12 h-12 rounded-full bg-red-500/10 flex items-center justify-center mb-6"
             >
-              <div class="flex items-center gap-6">
-                <div
-                  class="text-center bg-gold/10 p-4 rounded-2xl min-w-[80px]"
-                >
-                  <span class="block text-2xl font-bold text-gold">15</span>
-                  <span class="block text-xs uppercase text-gold/60">OUT</span>
-                </div>
-                <div>
-                  <h4 class="text-2xl font-bold">Imersão High-Stake</h4>
-                  <p class="text-gray-400 mt-1">
-                    Estratégias de escala e networking avançado.
-                  </p>
-                </div>
-              </div>
-              <button
-                class="px-8 py-3 border border-gold/40 text-gold rounded-full text-sm font-bold hover:bg-gold hover:text-navy transition-all"
-              >
-                Saber mais
-              </button>
+              <i data-lucide="triangle-alert" class="text-red-500 w-6 h-6"></i>
             </div>
+            <h3 class="text-2xl font-serif font-bold text-white mb-4">
+              A Provocação
+            </h3>
+            <p class="text-neutral-400 mb-4">
+              Empresários não quebram por falta de esforço.
+              <span class="text-white font-medium"
+                >Quebram por falta de estrutura.</span
+              >
+            </p>
+            <p class="font-medium text-white italic">
+              A pergunta é simples:<br /><span class="text-gold"
+                >Você está crescendo… ou apenas sobrevivendo?</span
+              >
+            </p>
           </div>
-        </div>
-      </section>
-    </main>
-
-    <!-- FOOTER -->
-    <footer class="bg-navy-dark border-t border-gold/10 py-24 px-6">
-      <div
-        class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-16"
-      >
-        <div class="text-center md:text-left">
-          <img
-            src="https://images.unsplash.com/photo-1614850523296-d8c1af93d400?q=80&w=300&auto=format&fit=crop"
-            alt="Clube Avançar"
-            class="h-12 w-auto mb-8 mx-auto md:mx-0"
-          />
-          <p class="text-gray-500 max-w-sm">
-            Conectando empresários ao próximo nível de faturamento e networking.
-          </p>
-        </div>
-        <div
-          class="flex gap-16 text-sm font-medium text-gray-400 uppercase tracking-widest"
-        >
-          <a href="#benefits" class="hover:text-gold transition-colors"
-            >Vantagens</a
+          <div
+            class="bg-black/50 border border-white/10 p-8 rounded-xl hover:border-gold/50 transition-colors group fade-in-up delay-200"
           >
-          <a href="#agenda" class="hover:text-gold transition-colors"
-            >Eventos</a
+            <div
+              class="w-12 h-12 rounded-full bg-orange-500/10 flex items-center justify-center mb-6"
+            >
+              <i data-lucide="target" class="text-orange-500 w-6 h-6"></i>
+            </div>
+            <h3 class="text-2xl font-serif font-bold text-white mb-4">
+              O Problema Real
+            </h3>
+            <ul
+              class="space-y-2 list-disc list-inside marker:text-orange-500 text-neutral-400 mb-4"
+            >
+              <li>Crescimento desorganizado</li>
+              <li>Solidão empresarial</li>
+              <li>Decisões no improviso</li>
+            </ul>
+            <p class="font-medium text-white">
+              O problema não é trabalhar pouco.<br /><span
+                class="text-orange-500"
+                >É crescer sem sistema.</span
+              >
+            </p>
+          </div>
+          <div
+            class="bg-gradient-to-b from-gold/10 to-black border border-gold p-8 rounded-xl shadow-[0_0_30px_rgba(198,168,90,0.1)] group fade-in-up delay-300"
           >
-          <a href="#plans" class="hover:text-gold transition-colors">Planos</a>
+            <div
+              class="w-12 h-12 rounded-full bg-gold/20 flex items-center justify-center mb-6"
+            >
+              <i data-lucide="lightbulb" class="text-gold w-6 h-6"></i>
+            </div>
+            <h3 class="text-2xl font-serif font-bold text-gold mb-4">
+              A Solução
+            </h3>
+            <p class="font-bold text-white text-lg mb-2">CLUBE AVANÇAR</p>
+            <p class="text-neutral-300 mb-4">
+              Um ecossistema estruturado baseado nos
+              <span class="text-gold">12 Pilares da Gestão</span>.
+            </p>
+            <p class="font-bold text-white border-t border-gold/30 mt-4 pt-4">
+              É um ambiente organizado para evolução contínua.
+            </p>
+          </div>
         </div>
       </div>
+    </section>
+
+    <!-- Pillars -->
+    <section id="pilares" class="py-24 bg-black relative overflow-hidden">
+      <!-- Background Grid -->
       <div
-        class="max-w-7xl mx-auto mt-24 pt-10 border-t border-white/5 text-center text-xs text-gray-600 uppercase tracking-[0.3em]"
+        class="absolute inset-0 bg-[linear-gradient(to_right,#1a1a1a_1px,transparent_1px),linear-gradient(to_bottom,#1a1a1a_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-20 pointer-events-none"
+        style="
+          mask-image: radial-gradient(
+            ellipse 60% 50% at 50% 50%,
+            #000 70%,
+            transparent 100%
+          );
+          -webkit-mask-image: radial-gradient(
+            ellipse 60% 50% at 50% 50%,
+            #000 70%,
+            transparent 100%
+          );
+        "
+      ></div>
+
+      <div class="container mx-auto px-4 relative z-10">
+        <div class="flex flex-col items-center gap-16 fade-in-up">
+          <!-- Top: Investimentos -->
+          <div class="flex flex-col items-center gap-4">
+            <div
+              class="relative group cursor-pointer flex flex-col items-center justify-center text-center p-4 rounded-lg border border-white/5 bg-white/5 hover:bg-white/10 hover:border-gold/50 transition-all duration-300 w-full max-w-xs"
+            >
+              <div
+                class="p-2 rounded-full bg-gold/10 text-gold group-hover:text-gold-neon group-hover:shadow-[0_0_15px_rgba(255,208,0,0.3)] transition-all mb-2"
+              >
+                <i data-lucide="arrow-up-right" class="w-6 h-6"></i>
+              </div>
+              <span
+                class="font-medium text-white uppercase tracking-wide text-sm"
+                >INVESTIMENTOS</span
+              >
+              <p
+                class="text-xs text-neutral-400 uppercase tracking-widest mt-1"
+              >
+                Crescimento & Evolução
+              </p>
+
+              <!-- Line down -->
+              <div
+                class="absolute top-full left-1/2 w-px h-16 bg-gradient-to-b from-gold/50 to-transparent -translate-x-1/2"
+              ></div>
+            </div>
+          </div>
+
+          <!-- Middle Layer -->
+          <div
+            class="grid grid-cols-1 lg:grid-cols-3 gap-8 w-full max-w-6xl items-center relative"
+          >
+            <!-- Mobile Line -->
+            <div
+              class="absolute top-0 bottom-0 left-1/2 w-px bg-gradient-to-b from-transparent via-gold/20 to-transparent -translate-x-1/2 lg:hidden"
+            ></div>
+
+            <!-- Left: Receita -->
+            <div class="flex flex-col gap-6 items-center lg:items-end">
+              <h4
+                class="text-neutral-500 text-sm uppercase tracking-widest mb-2"
+              >
+                Receita gera energia
+              </h4>
+
+              <!-- Marketing -->
+              <div
+                class="relative group cursor-pointer flex items-center gap-4 p-4 rounded-lg border border-white/5 bg-white/5 hover:bg-white/10 hover:border-gold/50 transition-all duration-300 w-full max-w-xs justify-center text-center flex-col"
+              >
+                <div
+                  class="p-2 rounded-full bg-gold/10 text-gold group-hover:text-gold-neon transition-all"
+                >
+                  <i data-lucide="megaphone" class="w-6 h-6"></i>
+                </div>
+                <span
+                  class="font-medium text-white uppercase tracking-wide text-sm"
+                  >Marketing</span
+                >
+              </div>
+
+              <!-- Vendas -->
+              <div
+                class="relative group cursor-pointer flex items-center gap-4 p-4 rounded-lg border border-white/5 bg-white/5 hover:bg-white/10 hover:border-gold/50 transition-all duration-300 w-full max-w-xs justify-center text-center flex-col"
+              >
+                <div
+                  class="p-2 rounded-full bg-gold/10 text-gold group-hover:text-gold-neon transition-all"
+                >
+                  <i data-lucide="trending-up" class="w-6 h-6"></i>
+                </div>
+                <span
+                  class="font-medium text-white uppercase tracking-wide text-sm"
+                  >Vendas</span
+                >
+              </div>
+            </div>
+
+            <!-- Center: Gestão -->
+            <div class="flex justify-center relative py-12 lg:py-0">
+              <div
+                class="absolute top-1/2 left-0 right-0 h-px bg-gold/20 -z-10 hidden lg:block"
+              ></div>
+              <div
+                class="relative w-64 h-64 rounded-full border border-gold/30 flex flex-col items-center justify-center bg-black/80 backdrop-blur-sm shadow-[0_0_50px_rgba(198,168,90,0.1)] group hover:shadow-[0_0_80px_rgba(198,168,90,0.2)] transition-shadow duration-500"
+              >
+                <div
+                  class="absolute inset-0 rounded-full border border-gold/10 animate-spin-slow"
+                ></div>
+                <div
+                  class="absolute inset-4 rounded-full border border-gold/10 animate-spin-reverse-slow"
+                ></div>
+                <h3
+                  class="text-2xl font-bold text-white text-center leading-tight"
+                >
+                  GESTÃO &<br /><span class="text-gold">GOVERNANÇA</span>
+                </h3>
+                <div
+                  class="mt-4 flex gap-2 text-[10px] text-neutral-400 uppercase tracking-wider"
+                >
+                  <span>Direção</span><span>•</span><span>Estratégia</span
+                  ><span>•</span><span>KPIs</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right: Entrega -->
+            <div class="flex flex-col gap-6 items-center lg:items-start">
+              <h4
+                class="text-neutral-500 text-sm uppercase tracking-widest mb-2"
+              >
+                Entrega transforma promessa
+              </h4>
+
+              <!-- Pessoas -->
+              <div
+                class="relative group cursor-pointer flex items-center gap-4 p-4 rounded-lg border border-white/5 bg-white/5 hover:bg-white/10 hover:border-gold/50 transition-all duration-300 w-full max-w-xs justify-center text-center flex-col"
+              >
+                <div
+                  class="p-2 rounded-full bg-gold/10 text-gold group-hover:text-gold-neon transition-all"
+                >
+                  <i data-lucide="users" class="w-6 h-6"></i>
+                </div>
+                <span
+                  class="font-medium text-white uppercase tracking-wide text-sm"
+                  >Pessoas & Cultura</span
+                >
+              </div>
+
+              <!-- Operações -->
+              <div
+                class="relative group cursor-pointer flex items-center gap-4 p-4 rounded-lg border border-white/5 bg-white/5 hover:bg-white/10 hover:border-gold/50 transition-all duration-300 w-full max-w-xs justify-center text-center flex-col"
+              >
+                <div
+                  class="p-2 rounded-full bg-gold/10 text-gold group-hover:text-gold-neon transition-all"
+                >
+                  <i data-lucide="settings" class="w-6 h-6"></i>
+                </div>
+                <span
+                  class="font-medium text-white uppercase tracking-wide text-sm"
+                  >Operações & Processos</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Transversal Pillars -->
+          <div class="flex gap-8 justify-center w-full max-w-2xl relative">
+            <div
+              class="absolute bottom-full left-1/2 w-px h-16 bg-gradient-to-t from-gold/50 to-transparent -translate-x-1/2"
+            ></div>
+
+            <!-- Comunicação -->
+            <div
+              class="relative group cursor-pointer flex items-center gap-4 p-4 rounded-lg border border-white/5 bg-white/5 hover:bg-white/10 hover:border-gold/50 transition-all duration-300 w-full max-w-xs justify-center text-center flex-col py-3 px-6"
+            >
+              <div
+                class="p-2 rounded-full bg-gold/10 text-gold group-hover:text-gold-neon transition-all"
+              >
+                <i data-lucide="message-square" class="w-5 h-5"></i>
+              </div>
+              <span
+                class="font-medium text-white uppercase tracking-wide text-xs"
+                >Comunicação</span
+              >
+            </div>
+
+            <!-- Tecnologia -->
+            <div
+              class="relative group cursor-pointer flex items-center gap-4 p-4 rounded-lg border border-white/5 bg-white/5 hover:bg-white/10 hover:border-gold/50 transition-all duration-300 w-full max-w-xs justify-center text-center flex-col py-3 px-6"
+            >
+              <div
+                class="p-2 rounded-full bg-gold/10 text-gold group-hover:text-gold-neon transition-all"
+              >
+                <i data-lucide="cpu" class="w-5 h-5"></i>
+              </div>
+              <span
+                class="font-medium text-white uppercase tracking-wide text-xs"
+                >Tecnologia</span
+              >
+            </div>
+          </div>
+
+          <!-- Bottom: Backoffice -->
+          <div class="w-full max-w-4xl relative mt-8">
+            <div class="absolute -top-8 left-1/2 -translate-x-1/2 text-center">
+              <span
+                class="text-gold text-xs uppercase tracking-[0.2em] bg-black px-2"
+                >Camada Backoffice</span
+              >
+            </div>
+            <div
+              class="grid grid-cols-2 md:grid-cols-4 gap-4 bg-neutral-900/50 border-t-2 border-gold p-6 rounded-b-xl backdrop-blur-sm relative overflow-hidden"
+            >
+              <div
+                class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold to-transparent opacity-50"
+              ></div>
+
+              <!-- Contábil -->
+              <div
+                class="flex flex-col items-center justify-center text-center gap-3 group cursor-pointer hover:-translate-y-1 transition-transform duration-300"
+              >
+                <div
+                  class="p-3 rounded-lg bg-black border border-white/10 group-hover:border-gold transition-colors"
+                >
+                  <i
+                    data-lucide="calculator"
+                    class="text-neutral-400 group-hover:text-gold transition-colors w-5 h-5"
+                  ></i>
+                </div>
+                <span
+                  class="text-xs font-medium text-neutral-300 uppercase tracking-wider group-hover:text-white transition-colors"
+                  >Contábil</span
+                >
+              </div>
+              <!-- Tributário -->
+              <div
+                class="flex flex-col items-center justify-center text-center gap-3 group cursor-pointer hover:-translate-y-1 transition-transform duration-300"
+              >
+                <div
+                  class="p-3 rounded-lg bg-black border border-white/10 group-hover:border-gold transition-colors"
+                >
+                  <i
+                    data-lucide="landmark"
+                    class="text-neutral-400 group-hover:text-gold transition-colors w-5 h-5"
+                  ></i>
+                </div>
+                <span
+                  class="text-xs font-medium text-neutral-300 uppercase tracking-wider group-hover:text-white transition-colors"
+                  >Tributário</span
+                >
+              </div>
+              <!-- Financeiro -->
+              <div
+                class="flex flex-col items-center justify-center text-center gap-3 group cursor-pointer hover:-translate-y-1 transition-transform duration-300"
+              >
+                <div
+                  class="p-3 rounded-lg bg-black border border-white/10 group-hover:border-gold transition-colors"
+                >
+                  <i
+                    data-lucide="scale"
+                    class="text-neutral-400 group-hover:text-gold transition-colors w-5 h-5"
+                  ></i>
+                </div>
+                <span
+                  class="text-xs font-medium text-neutral-300 uppercase tracking-wider group-hover:text-white transition-colors"
+                  >Financeiro</span
+                >
+              </div>
+              <!-- Jurídico -->
+              <div
+                class="flex flex-col items-center justify-center text-center gap-3 group cursor-pointer hover:-translate-y-1 transition-transform duration-300"
+              >
+                <div
+                  class="p-3 rounded-lg bg-black border border-white/10 group-hover:border-gold transition-colors"
+                >
+                  <i
+                    data-lucide="gavel"
+                    class="text-neutral-400 group-hover:text-gold transition-colors w-5 h-5"
+                  ></i>
+                </div>
+                <span
+                  class="text-xs font-medium text-neutral-300 uppercase tracking-wider group-hover:text-white transition-colors"
+                  >Jurídico</span
+                >
+              </div>
+            </div>
+            <p class="text-center text-neutral-500 text-sm mt-4 italic">
+              "A base que sustenta tudo."
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Annual Agenda (Redesigned) -->
+    <section id="agenda" class="py-24 bg-neutral-900">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16 fade-in-up">
+          <h2 class="text-4xl md:text-6xl font-serif font-bold text-white mb-4">
+            Agenda Anual
+          </h2>
+          <div class="w-24 h-1 bg-gold mx-auto mb-4"></div>
+          <p class="text-neutral-400">
+            Um ano inteiro de conteúdo estratégico planejado para o seu
+            crescimento.
+          </p>
+        </div>
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+          id="agenda-grid"
+        >
+          <!-- JS will populate with new design -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Monthly Structure (Redesigned) -->
+    <section id="encontros" class="py-24 bg-black">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16 fade-in-up">
+          <h2 class="text-4xl md:text-6xl font-serif font-bold text-white mb-4">
+            Estrutura Mensal
+          </h2>
+          <p class="text-gold uppercase tracking-widest text-lg font-sans">
+            3 Encontros Presenciais por Mês
+          </p>
+          <p class="text-neutral-500 mt-2">Segundas-feiras | 19:00 às 22:00</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Workshop -->
+          <div
+            class="bg-neutral-900 border border-white/10 p-8 rounded-xl hover:border-gold transition-colors group fade-in-up flex flex-col h-full"
+          >
+            <div
+              class="w-14 h-14 bg-gold/10 rounded-xl flex items-center justify-center mb-6 text-gold group-hover:bg-gold group-hover:text-black transition-all shadow-[0_0_20px_rgba(198,168,90,0.2)]"
+            >
+              <i data-lucide="wrench" class="w-7 h-7"></i>
+            </div>
+            <h3 class="text-2xl font-serif font-bold text-white mb-2">
+              Workshop Técnico
+            </h3>
+            <p class="text-sm text-neutral-400 mb-6 font-light">
+              Foco em conteúdo aplicável, estratégico e ferramentas práticas.
+            </p>
+            <div class="mt-auto space-y-4">
+              <div class="bg-black/50 p-4 rounded-lg border border-white/5">
+                <h4
+                  class="text-gold text-xs font-bold uppercase tracking-wider mb-2"
+                >
+                  Formato
+                </h4>
+                <p class="text-sm text-white">
+                  2 palestras de 1h + 1h de aplicação prática.
+                </p>
+              </div>
+              <div class="bg-black/50 p-4 rounded-lg border border-white/5">
+                <h4
+                  class="text-gold text-xs font-bold uppercase tracking-wider mb-2"
+                >
+                  Entregas
+                </h4>
+                <ul class="text-sm text-neutral-300 space-y-1">
+                  <li class="flex items-center gap-2">
+                    <div class="w-1 h-1 bg-gold rounded-full"></div>
+                    Diagnóstico
+                  </li>
+                  <li class="flex items-center gap-2">
+                    <div class="w-1 h-1 bg-gold rounded-full"></div>
+                    Checklist
+                  </li>
+                  <li class="flex items-center gap-2">
+                    <div class="w-1 h-1 bg-gold rounded-full"></div>
+                    Plano de Ação
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Palestra -->
+          <div
+            class="bg-neutral-900 border border-white/10 p-8 rounded-xl hover:border-gold transition-colors group fade-in-up delay-100 flex flex-col h-full"
+          >
+            <div
+              class="w-14 h-14 bg-gold/10 rounded-xl flex items-center justify-center mb-6 text-gold group-hover:bg-gold group-hover:text-black transition-all shadow-[0_0_20px_rgba(198,168,90,0.2)]"
+            >
+              <i data-lucide="mic" class="w-7 h-7"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-white mb-2">Palestra + Q&A</h3>
+            <p class="text-sm text-neutral-400 mb-6 font-light">
+              Exposição a novas perspectivas, cases reais e especialistas.
+            </p>
+            <div class="mt-auto space-y-4">
+              <div class="bg-black/50 p-4 rounded-lg border border-white/5">
+                <h4
+                  class="text-gold text-xs font-bold uppercase tracking-wider mb-2"
+                >
+                  Objetivo
+                </h4>
+                <p class="text-sm text-white">
+                  Atualização técnica e visão de mercado aprofundada.
+                </p>
+              </div>
+              <div class="bg-black/50 p-4 rounded-lg border border-white/5">
+                <h4
+                  class="text-gold text-xs font-bold uppercase tracking-wider mb-2"
+                >
+                  Destaques
+                </h4>
+                <ul class="text-sm text-neutral-300 space-y-1">
+                  <li class="flex items-center gap-2">
+                    <div class="w-1 h-1 bg-gold rounded-full"></div>
+                    Especialistas Convidados
+                  </li>
+                  <li class="flex items-center gap-2">
+                    <div class="w-1 h-1 bg-gold rounded-full"></div>
+                    Sessão de Perguntas
+                  </li>
+                  <li class="flex items-center gap-2">
+                    <div class="w-1 h-1 bg-gold rounded-full"></div>
+                    Networking Dirigido
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Networking -->
+          <div
+            class="bg-neutral-900 border border-white/10 p-8 rounded-xl hover:border-gold transition-colors group fade-in-up delay-200 flex flex-col h-full"
+          >
+            <div
+              class="w-14 h-14 bg-gold/10 rounded-xl flex items-center justify-center mb-6 text-gold group-hover:bg-gold group-hover:text-black transition-all shadow-[0_0_20px_rgba(198,168,90,0.2)]"
+            >
+              <i data-lucide="users" class="w-7 h-7"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-white mb-2">
+              Networking & Hot Seat
+            </h3>
+            <p class="text-sm text-neutral-400 mb-6 font-light">
+              Conexões estratégicas e resolução de problemas reais.
+            </p>
+            <div class="mt-auto space-y-4">
+              <div class="bg-black/50 p-4 rounded-lg border border-white/5">
+                <h4
+                  class="text-gold text-xs font-bold uppercase tracking-wider mb-2"
+                >
+                  Dinâmica
+                </h4>
+                <p class="text-sm text-white">
+                  Troca de experiências e mentoria coletiva.
+                </p>
+              </div>
+              <div class="bg-black/50 p-4 rounded-lg border border-white/5">
+                <h4
+                  class="text-gold text-xs font-bold uppercase tracking-wider mb-2"
+                >
+                  Benefícios
+                </h4>
+                <ul class="text-sm text-neutral-300 space-y-1">
+                  <li class="flex items-center gap-2">
+                    <div class="w-1 h-1 bg-gold rounded-full"></div>
+                    Acesso a Sócios
+                  </li>
+                  <li class="flex items-center gap-2">
+                    <div class="w-1 h-1 bg-gold rounded-full"></div>
+                    Resolução de Travas
+                  </li>
+                  <li class="flex items-center gap-2">
+                    <div class="w-1 h-1 bg-gold rounded-full"></div>
+                    Novos Negócios
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Environment -->
+    <section id="ambiente" class="py-24 bg-neutral-900">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16 fade-in-up">
+          <h2 class="text-4xl md:text-6xl font-serif font-bold text-white mb-4">
+            Ambiente Hub Avançar
+          </h2>
+          <div class="w-24 h-1 bg-gold mx-auto"></div>
+        </div>
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          id="environment-grid"
+        >
+          <!-- JS Populated -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Hub Video Section -->
+    <section class="py-24 bg-black">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-12 fade-in-up">
+          <h2 class="text-4xl md:text-6xl font-serif font-bold text-white mb-4">
+            Conheça o <span class="text-gold">Hub Avançar</span>
+          </h2>
+          <p class="text-neutral-400 max-w-2xl mx-auto">
+            Uma estrutura completa pensada para o seu crescimento.
+          </p>
+        </div>
+        <div
+          class="relative w-full aspect-video max-w-5xl mx-auto rounded-2xl overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.5)] border border-white/10 group fade-in-up"
+        >
+          <video
+            id="hub-main-video"
+            class="w-full h-full object-cover"
+            poster="imagens/externo.jpg"
+            playsinline
+          >
+            <source src="videos/vídeo sobre o HUB (1).mp4" type="video/mp4" />
+            Seu navegador não suporta a reprodução de vídeos.
+          </video>
+
+          <!-- Custom Play Overlay -->
+          <div
+            id="hub-video-overlay"
+            class="absolute inset-0 bg-black/40 flex items-center justify-center cursor-pointer transition-opacity duration-300"
+            onclick="toggleHubVideo()"
+          >
+            <div
+              class="w-20 h-20 rounded-full bg-gold/90 flex items-center justify-center shadow-[0_0_30px_rgba(198,168,90,0.5)] group-hover:scale-110 transition-transform duration-300"
+            >
+              <i
+                data-lucide="play"
+                class="text-black fill-black ml-1 w-8 h-8"
+              ></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Events Carousel -->
+    <section id="eventos" class="py-24 bg-neutral-900">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16 fade-in-up">
+          <h2 class="text-4xl md:text-6xl font-serif font-bold text-gold mb-2">
+            Eventos Exclusivos
+          </h2>
+          <p class="text-neutral-400">Momentos que marcam nossa história</p>
+        </div>
+        <div
+          class="max-w-5xl mx-auto relative bg-black border border-white/10 rounded-2xl overflow-hidden fade-in-up"
+        >
+          <div id="events-carousel" class="relative min-h-[500px]">
+            <!-- JS Populated -->
+          </div>
+          <div class="absolute bottom-8 right-8 flex gap-4 z-20">
+            <button
+              onclick="prevEvent()"
+              class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white hover:bg-white/10"
+            >
+              <i data-lucide="chevron-left" class="w-5 h-5"></i>
+            </button>
+            <button
+              onclick="nextEvent()"
+              class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white hover:bg-white/10"
+            >
+              <i data-lucide="chevron-right" class="w-5 h-5"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials (Reels) -->
+    <section class="py-24 bg-black overflow-hidden">
+      <div class="container mx-auto px-4 mb-12">
+        <h2
+          class="text-4xl md:text-6xl font-serif font-bold text-white mb-2 text-center"
+        >
+          Empresários que decidiram <span class="text-gold">evoluir</span>.
+        </h2>
+      </div>
+      <div class="flex flex-col gap-8">
+        <!-- Top Row -->
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 justify-center max-w-7xl mx-auto w-full slide-in-left"
+          id="testimonials-top"
+        ></div>
+        <!-- Bottom Row -->
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 justify-center max-w-7xl mx-auto w-full slide-in-right"
+          id="testimonials-bottom"
+        ></div>
+      </div>
+    </section>
+
+    <!-- Who is it for (Para Quem É) -->
+    <section class="py-24 bg-black relative overflow-hidden">
+      <div class="container mx-auto px-4 relative z-10">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl mx-auto">
+          <!-- Para Quem É -->
+          <div
+            class="bg-neutral-900/50 border-l-4 border-gold p-8 rounded-r-xl fade-in-up"
+          >
+            <h3
+              class="text-2xl font-serif font-bold text-white mb-6 flex items-center gap-3"
+            >
+              <i data-lucide="check-circle-2" class="text-gold w-6 h-6"></i>
+              Para Quem É
+            </h3>
+            <ul class="space-y-3 mb-8">
+              <li class="flex items-center gap-3 text-neutral-300">
+                <div class="w-1.5 h-1.5 bg-gold rounded-full"></div>
+                Empresários
+              </li>
+              <li class="flex items-center gap-3 text-neutral-300">
+                <div class="w-1.5 h-1.5 bg-gold rounded-full"></div>
+                Sócios
+              </li>
+              <li class="flex items-center gap-3 text-neutral-300">
+                <div class="w-1.5 h-1.5 bg-gold rounded-full"></div>
+                Executivos
+              </li>
+              <li class="flex items-center gap-3 text-neutral-300">
+                <div class="w-1.5 h-1.5 bg-gold rounded-full"></div>
+                Líderes que querem crescer com estrutura
+              </li>
+              <li class="flex items-center gap-3 text-neutral-300">
+                <div class="w-1.5 h-1.5 bg-gold rounded-full"></div>
+                Profissionais que buscam ambiente estratégico
+              </li>
+            </ul>
+            <p class="text-white font-bold border-t border-white/10 pt-4">
+              Não é para curiosos.<br /><span class="text-gold"
+                >É para quem decidiu evoluir.</span
+              >
+            </p>
+          </div>
+
+          <!-- O Que Não É -->
+          <div
+            class="bg-neutral-900/50 border-l-4 border-red-500 p-8 rounded-r-xl fade-in-up delay-100"
+          >
+            <h3
+              class="text-2xl font-serif font-bold text-white mb-6 flex items-center gap-3"
+            >
+              <i data-lucide="x-circle" class="text-red-500 w-6 h-6"></i> O Que
+              Não É
+            </h3>
+            <ul class="space-y-3 mb-8">
+              <li class="flex items-center gap-3 text-neutral-300">
+                <div class="w-1.5 h-1.5 bg-red-500 rounded-full"></div>
+                Não é curso online
+              </li>
+              <li class="flex items-center gap-3 text-neutral-300">
+                <div class="w-1.5 h-1.5 bg-red-500 rounded-full"></div>
+                Não é evento motivacional
+              </li>
+              <li class="flex items-center gap-3 text-neutral-300">
+                <div class="w-1.5 h-1.5 bg-red-500 rounded-full"></div>
+                Não é grupo de networking superficial
+              </li>
+              <li class="flex items-center gap-3 text-neutral-300">
+                <div class="w-1.5 h-1.5 bg-red-500 rounded-full"></div>
+                Não é comunidade aberta sem critério
+              </li>
+            </ul>
+            <p class="text-white font-bold border-t border-white/10 pt-4">
+              É um ambiente estruturado de
+              <span class="text-red-500">crescimento empresarial.</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing -->
+    <section id="planos" class="py-24 bg-neutral-900">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16 fade-in-up">
+          <h2 class="text-4xl md:text-6xl font-serif font-bold text-white mb-4">
+            Planos de Acesso
+          </h2>
+          <div class="w-24 h-1 bg-gold mx-auto"></div>
+        </div>
+        <div
+          class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto mb-12"
+        >
+          <!-- Mensal -->
+          <div
+            class="bg-black border border-white/10 rounded-2xl p-8 flex flex-col relative hover:border-gold/50 transition-colors fade-in-up h-full"
+          >
+            <h3 class="text-xl font-bold text-white mb-2">Plano Mensal</h3>
+            <div class="flex items-baseline gap-1 mb-6">
+              <span class="text-sm text-neutral-400">R$</span
+              ><span class="text-5xl font-bold text-white">397</span
+              ><span class="text-neutral-400">/mês</span>
+            </div>
+
+            <div class="space-y-4 mb-8 flex-grow">
+              <p
+                class="text-sm font-bold text-gold uppercase tracking-wider mb-2"
+              >
+                Benefícios Inclusos:
+              </p>
+              <ul class="space-y-3">
+                <li class="flex items-start gap-2 text-sm text-neutral-300">
+                  <i
+                    data-lucide="check"
+                    class="w-4 h-4 text-gold mt-0.5 flex-shrink-0"
+                  ></i>
+                  2 Encontros presenciais por mês
+                </li>
+                <li class="flex items-start gap-2 text-sm text-neutral-300">
+                  <i
+                    data-lucide="check"
+                    class="w-4 h-4 text-gold mt-0.5 flex-shrink-0"
+                  ></i>
+                  1 Workshop presencial por mês
+                </li>
+                <li class="flex items-start gap-2 text-sm text-neutral-300">
+                  <i
+                    data-lucide="check"
+                    class="w-4 h-4 text-gold mt-0.5 flex-shrink-0"
+                  ></i>
+                  Acesso ao Co-working
+                </li>
+                <li class="flex items-start gap-2 text-sm text-neutral-300">
+                  <i
+                    data-lucide="check"
+                    class="w-4 h-4 text-gold mt-0.5 flex-shrink-0"
+                  ></i>
+                  Acesso à Cafeteria do Hub
+                </li>
+                <li class="flex items-start gap-2 text-sm text-neutral-300">
+                  <i
+                    data-lucide="check"
+                    class="w-4 h-4 text-gold mt-0.5 flex-shrink-0"
+                  ></i>
+                  Desconto de até 70% em serviços do Hub
+                </li>
+                <li class="flex items-start gap-2 text-sm text-neutral-300">
+                  <i
+                    data-lucide="check"
+                    class="w-4 h-4 text-gold mt-0.5 flex-shrink-0"
+                  ></i>
+                  Grupo exclusivo no WhatsApp
+                </li>
+              </ul>
+
+              <div class="pt-4 border-t border-white/10">
+                <p
+                  class="text-xs font-bold text-white uppercase tracking-wider mb-2"
+                >
+                  Acesso Prioritário e com Desconto a:
+                </p>
+                <ul class="grid grid-cols-2 gap-2">
+                  <li class="flex items-center gap-2 text-xs text-neutral-400">
+                    <div class="w-1 h-1 bg-gold rounded-full"></div>
+                    Treinamentos
+                  </li>
+                  <li class="flex items-center gap-2 text-xs text-neutral-400">
+                    <div class="w-1 h-1 bg-gold rounded-full"></div>
+                    Formações
+                  </li>
+                  <li class="flex items-center gap-2 text-xs text-neutral-400">
+                    <div class="w-1 h-1 bg-gold rounded-full"></div>
+                    Mentorias
+                  </li>
+                  <li class="flex items-center gap-2 text-xs text-neutral-400">
+                    <div class="w-1 h-1 bg-gold rounded-full"></div>
+                    Consultorias
+                  </li>
+                  <li
+                    class="flex items-center gap-2 text-xs text-neutral-400 col-span-2"
+                  >
+                    <div class="w-1 h-1 bg-gold rounded-full"></div>
+                    Eventos do HUB AVANÇAR
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <button
+              class="w-full py-4 border border-gold text-gold font-bold uppercase tracking-widest hover:bg-gold hover:text-black transition-all rounded-lg mt-auto"
+            >
+              Assinar Mensal
+            </button>
+          </div>
+
+          <!-- Anual -->
+          <div
+            class="bg-gradient-to-b from-gold/10 to-black border border-gold rounded-2xl p-8 flex flex-col relative shadow-[0_0_30px_rgba(198,168,90,0.1)] fade-in-up delay-100 h-full"
+          >
+            <div
+              class="absolute top-0 right-0 bg-gold text-black text-xs font-bold px-3 py-1 rounded-bl-lg rounded-tr-lg"
+            >
+              17% OFF
+            </div>
+            <h3 class="text-xl font-bold text-gold mb-2">Plano Anual</h3>
+            <div class="flex items-baseline gap-1 mb-6">
+              <span class="text-sm text-neutral-400">R$</span
+              ><span class="text-5xl font-bold text-white">3.954</span
+              ><span class="text-neutral-400">à vista</span>
+            </div>
+
+            <div class="space-y-4 mb-8 flex-grow">
+              <p
+                class="text-sm font-bold text-gold uppercase tracking-wider mb-2"
+              >
+                Todos os Benefícios do Mensal:
+              </p>
+              <ul class="space-y-3">
+                <li class="flex items-start gap-2 text-sm text-white">
+                  <i
+                    data-lucide="check"
+                    class="w-4 h-4 text-gold mt-0.5 flex-shrink-0"
+                  ></i>
+                  2 Encontros presenciais por mês
+                </li>
+                <li class="flex items-start gap-2 text-sm text-white">
+                  <i
+                    data-lucide="check"
+                    class="w-4 h-4 text-gold mt-0.5 flex-shrink-0"
+                  ></i>
+                  1 Workshop presencial por mês
+                </li>
+                <li class="flex items-start gap-2 text-sm text-white">
+                  <i
+                    data-lucide="check"
+                    class="w-4 h-4 text-gold mt-0.5 flex-shrink-0"
+                  ></i>
+                  Acesso ao Co-working & Cafeteria
+                </li>
+                <li class="flex items-start gap-2 text-sm text-white">
+                  <i
+                    data-lucide="check"
+                    class="w-4 h-4 text-gold mt-0.5 flex-shrink-0"
+                  ></i>
+                  Desconto de até 70% em serviços
+                </li>
+                <li class="flex items-start gap-2 text-sm text-white">
+                  <i
+                    data-lucide="check"
+                    class="w-4 h-4 text-gold mt-0.5 flex-shrink-0"
+                  ></i>
+                  Grupo exclusivo no WhatsApp
+                </li>
+              </ul>
+
+              <div class="pt-4 border-t border-white/10">
+                <p
+                  class="text-xs font-bold text-gold uppercase tracking-wider mb-2"
+                >
+                  Vantagens Exclusivas Anual:
+                </p>
+                <ul class="space-y-2">
+                  <li
+                    class="flex items-center gap-2 text-sm text-white font-medium"
+                  >
+                    <i data-lucide="star" class="w-4 h-4 text-gold"></i>
+                    Economia de R$ 810,00
+                  </li>
+                  <li
+                    class="flex items-center gap-2 text-sm text-white font-medium"
+                  >
+                    <i data-lucide="star" class="w-4 h-4 text-gold"></i> Acesso
+                    garantido por 12 meses
+                  </li>
+                  <li
+                    class="flex items-center gap-2 text-sm text-white font-medium"
+                  >
+                    <i data-lucide="star" class="w-4 h-4 text-gold"></i>
+                    Prioridade máxima em eventos
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <button
+              class="w-full py-4 bg-gold text-black font-bold uppercase tracking-widest hover:bg-gold-light transition-all rounded-lg shadow-[0_0_20px_rgba(198,168,90,0.3)] mt-auto"
+            >
+              Assinar Anual
+            </button>
+          </div>
+        </div>
+
+        <div class="text-center fade-in-up delay-200">
+          <p
+            class="text-neutral-500 text-sm uppercase tracking-widest font-medium"
+          >
+            "O Clube é a porta de entrada para níveis mais avançados."
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Differential -->
+    <section
+      class="py-32 bg-black flex flex-col items-center justify-center min-h-[60vh]"
+    >
+      <div
+        class="flex flex-col md:flex-row gap-8 md:gap-16 items-center justify-center mb-16 px-4 text-center"
       >
-        © <span id="year"></span> CLUBE AVANÇAR. TODOS OS DIREITOS RESERVADOS.
+        <div class="relative fade-in-up">
+          <h2
+            class="text-4xl md:text-5xl lg:text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-white to-neutral-600 uppercase tracking-tighter"
+          >
+            Ambiente
+          </h2>
+        </div>
+        <div class="relative fade-in-up delay-100">
+          <h2
+            class="text-4xl md:text-5xl lg:text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-white to-neutral-600 uppercase tracking-tighter"
+          >
+            Rede
+          </h2>
+        </div>
+        <div class="relative fade-in-up delay-200">
+          <h2
+            class="text-4xl md:text-5xl lg:text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-white to-neutral-600 uppercase tracking-tighter"
+          >
+            Constância
+          </h2>
+        </div>
+      </div>
+      <div class="text-center px-4 fade-in-up delay-300">
+        <p class="text-xl md:text-2xl text-neutral-400 font-light">
+          "Empresários isolados estagnam.
+          <span class="text-gold font-medium text-glow"
+            >Empresários conectados evoluem.</span
+          >"
+        </p>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section
+      class="py-32 relative overflow-hidden flex items-center justify-center"
+    >
+      <div
+        class="absolute inset-0 bg-gradient-to-b from-black via-neutral-900 to-[#1a1500]"
+      ></div>
+      <div
+        class="container mx-auto px-4 relative z-10 text-center max-w-4xl fade-in-up"
+      >
+        <h2
+          class="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight"
+        >
+          Uma decisão. Um ano.<br /><span class="text-gold"
+            >Uma transformação estrutural.</span
+          >
+        </h2>
+        <p class="text-xl text-neutral-300 mb-12">
+          12 meses. 36 encontros presenciais. 24 eventos estratégicos.
+        </p>
+        <button
+          class="px-12 py-6 bg-gold text-black font-bold text-xl tracking-widest uppercase shadow-[0_0_30px_rgba(198,168,90,0.4)] hover:shadow-[0_0_50px_rgba(198,168,90,0.6)] hover:bg-gold-light transition-all duration-300 animate-pulse-slow rounded-lg"
+        >
+          Quero Fazer Parte
+        </button>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contato" class="bg-black py-16 border-t border-white/10">
+      <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+          <div class="text-center md:text-left">
+            <div
+              class="w-12 h-12 bg-gold rounded flex items-center justify-center font-bold text-black text-xl mb-6 mx-auto md:mx-0"
+            >
+              CA
+            </div>
+            <p class="text-neutral-400 text-sm leading-relaxed">
+              O Clube Avançar é o maior ecossistema de crescimento empresarial
+              da região. Conectando mentes, acelerando resultados.
+            </p>
+          </div>
+          <div class="text-center">
+            <h4 class="text-white font-bold uppercase tracking-widest mb-6">
+              Contato
+            </h4>
+            <div class="flex flex-col gap-4 items-center">
+              <a
+                href="#"
+                class="flex items-center gap-2 text-neutral-400 hover:text-gold transition-colors"
+                ><i data-lucide="phone" class="w-4 h-4"></i> (11) 99999-9999</a
+              >
+              <a
+                href="#"
+                class="flex items-center gap-2 text-neutral-400 hover:text-gold transition-colors"
+                ><i data-lucide="mail" class="w-4 h-4"></i>
+                contato@clubeavancar.com.br</a
+              >
+              <a
+                href="#"
+                class="flex items-center gap-2 text-neutral-400 hover:text-gold transition-colors"
+                ><i data-lucide="map-pin" class="w-4 h-4"></i> Av. Paulista,
+                1000 - SP</a
+              >
+            </div>
+          </div>
+          <div class="text-center md:text-right">
+            <h4 class="text-white font-bold uppercase tracking-widest mb-6">
+              Redes Sociais
+            </h4>
+            <div class="flex gap-4 justify-center md:justify-end">
+              <a
+                href="#"
+                class="w-10 h-10 rounded-full bg-neutral-900 flex items-center justify-center text-white hover:bg-gold hover:text-black transition-all"
+                ><i data-lucide="instagram" class="w-5 h-5"></i
+              ></a>
+              <a
+                href="#"
+                class="w-10 h-10 rounded-full bg-neutral-900 flex items-center justify-center text-white hover:bg-gold hover:text-black transition-all"
+                ><i data-lucide="linkedin" class="w-5 h-5"></i
+              ></a>
+              <a
+                href="#"
+                class="w-10 h-10 rounded-full bg-neutral-900 flex items-center justify-center text-white hover:bg-gold hover:text-black transition-all"
+                ><i data-lucide="youtube" class="w-5 h-5"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+        <div class="text-center pt-8 border-t border-white/5">
+          <p class="text-neutral-600 text-sm">
+            © 2024 Clube Avançar. Todos os direitos reservados.
+          </p>
+        </div>
       </div>
     </footer>
 
-    <!-- GSAP Libraries -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <!-- Lightbox -->
+    <div
+      id="lightbox"
+      class="fixed inset-0 z-[60] bg-black/95 hidden flex items-center justify-center p-4"
+      onclick="closeLightbox()"
+    >
+      <button
+        class="absolute top-4 right-4 text-white hover:text-gold"
+        onclick="closeLightbox()"
+      >
+        <i data-lucide="x" class="w-8 h-8"></i>
+      </button>
+      <img
+        id="lightbox-img"
+        src=""
+        alt="Full screen"
+        class="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl border border-white/10"
+      />
+    </div>
 
     <script>
-      // Global Play/Pause control by clicking the card
-      function togglePlayCard(card) {
-        const video = card.querySelector("video");
+      lucide.createIcons();
 
-        if (video.paused) {
-          video
-            .play()
-            .then(() => {
-              card.classList.remove("is-paused");
-            })
-            .catch((err) => console.log("Play failed: ", err));
+      // Mobile Menu
+      const menuBtn = document.getElementById("mobile-menu-btn");
+      const closeMenuBtn = document.getElementById("close-menu-btn");
+      const drawer = document.getElementById("mobile-menu-drawer");
+      const overlay = document.getElementById("mobile-menu-overlay");
+      const mobileLinks = document.querySelectorAll(".mobile-link");
+
+      function toggleMenu() {
+        const isClosed = drawer.classList.contains("translate-x-full");
+        if (isClosed) {
+          drawer.classList.remove("translate-x-full");
+          overlay.classList.remove("hidden", "opacity-0");
+          setTimeout(() => overlay.classList.remove("opacity-0"), 10);
         } else {
-          video.pause();
-          card.classList.add("is-paused");
+          drawer.classList.add("translate-x-full");
+          overlay.classList.add("opacity-0");
+          setTimeout(() => overlay.classList.add("hidden"), 300);
         }
       }
 
-      // Mute Control (top-right button)
-      function toggleMuteInCard(btn, event) {
-        event.stopPropagation(); // Prevents the card click from firing
-        const card = btn.closest(".reels-card");
-        const video = card.querySelector("video");
-        const muteIcon = btn.querySelector(".mute-icon");
-        const unmuteIcon = btn.querySelector(".unmute-icon");
+      menuBtn.addEventListener("click", toggleMenu);
+      closeMenuBtn.addEventListener("click", toggleMenu);
+      overlay.addEventListener("click", toggleMenu);
+      mobileLinks.forEach((link) => link.addEventListener("click", toggleMenu));
 
-        if (video.muted) {
-          video.muted = false;
-          muteIcon.classList.add("hidden");
-          unmuteIcon.classList.remove("hidden");
-        } else {
-          video.muted = true;
-          muteIcon.classList.remove("hidden");
-          unmuteIcon.classList.add("hidden");
-        }
-      }
+      // Rocket Scroll
+      const rocketContainer = document.getElementById("rocket-container");
+      const rocketSmoke = document.getElementById("rocket-smoke");
 
-      document.addEventListener("DOMContentLoaded", () => {
-        gsap.registerPlugin(ScrollTrigger);
-        document.getElementById("year").innerText = new Date().getFullYear();
+      window.addEventListener("scroll", () => {
+        const scrollY = window.scrollY;
+        if (scrollY < 800) {
+          // Move rocket up
+          rocketContainer.style.transform = `translateY(-${scrollY * 0.8}px) scale(${1 - scrollY * 0.0002})`;
 
-        // Navbar Scroll Logic
-        const navbar = document.getElementById("navbar");
-        window.addEventListener("scroll", () => {
-          if (window.scrollY > 50) {
-            navbar.classList.add("glass-nav", "py-4");
-            navbar.classList.remove("py-6");
+          // Show smoke on scroll
+          if (scrollY > 50) {
+            rocketSmoke.style.opacity = "1";
           } else {
-            navbar.classList.remove("glass-nav", "py-4");
-            navbar.classList.add("py-6");
-          }
-        });
-
-        // Hero Scroll Animation
-        const heroTl = gsap.timeline({
-          scrollTrigger: {
-            trigger: "#hero",
-            start: "top top",
-            end: "+=150%",
-            pin: true,
-            scrub: 1.5,
-          },
-        });
-
-        heroTl.to(
-          "#hero-text",
-          {
-            x: window.innerWidth > 768 ? window.innerWidth * 0.25 : 0,
-            scale: 0.85,
-            opacity: 0.6,
-            duration: 2,
-          },
-          0,
-        );
-
-        heroTl.fromTo(
-          "#hero-image-wrapper",
-          { opacity: 0, x: -300, autoAlpha: 0 },
-          { opacity: 1, x: 0, autoAlpha: 1, duration: 2, ease: "power3.out" },
-          0.4,
-        );
-
-        // Section reveals
-        const revealSections = document.querySelectorAll(".reveal-on-scroll");
-        revealSections.forEach((section) => {
-          gsap.fromTo(
-            section,
-            { opacity: 0, y: 60 },
-            {
-              opacity: 1,
-              y: 0,
-              duration: 1.2,
-              scrollTrigger: {
-                trigger: section,
-                start: "top 85%",
-                toggleActions: "play none none reverse",
-              },
-            },
-          );
-        });
-
-        // Intersection Observer for Testimonials - Automatic Play on scroll
-        const testimonialsSection = document.getElementById("testimonials");
-        const videos = document.querySelectorAll(".reel-video");
-
-        const videoObserver = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                // Scroll in: Start playing (they start muted by HTML attribute)
-                videos.forEach((v) => {
-                  const card = v.closest(".reels-card");
-                  v.play()
-                    .then(() => {
-                      card.classList.remove("is-paused");
-                    })
-                    .catch((e) => {
-                      console.log("Autoplay might be restricted.");
-                      card.classList.add("is-paused");
-                    });
-                });
-              } else {
-                // Scroll out: Pause to save resources
-                videos.forEach((v) => {
-                  v.pause();
-                  v.closest(".reels-card").classList.add("is-paused");
-                });
-              }
-            });
-          },
-          { threshold: 0.2 },
-        );
-
-        if (testimonialsSection) {
-          videoObserver.observe(testimonialsSection);
-        }
-
-        // Initialize all videos as paused visually at start
-        videos.forEach((v) => {
-          v.closest(".reels-card").classList.add("is-paused");
-        });
-
-        // Generate Sparkles/Stars
-        const starsContainer = document.getElementById("hero-stars");
-        const starCount = 60; // Number of sparkles
-
-        if (starsContainer) {
-          for (let i = 0; i < starCount; i++) {
-            const star = document.createElement("div");
-            star.classList.add("sparkle");
-
-            // Random positioning
-            const x = Math.random() * 100;
-            const y = Math.random() * 100;
-
-            // Random styling
-            const size = Math.random() * 3 + 1; // 1px to 4px
-            const duration = Math.random() * 3 + 2; // 2s to 5s
-            const delay = Math.random() * 5;
-            const maxOpacity = Math.random() * 0.7 + 0.3;
-
-            // 30% chance to be gold
-            if (Math.random() > 0.7) {
-              star.classList.add("gold");
-            }
-
-            star.style.left = `${x}%`;
-            star.style.top = `${y}%`;
-            star.style.width = `${size}px`;
-            star.style.height = `${size}px`;
-            star.style.animationDuration = `${duration}s`;
-            star.style.animationDelay = `${delay}s`;
-            star.style.setProperty("--max-opacity", maxOpacity);
-
-            starsContainer.appendChild(star);
+            rocketSmoke.style.opacity = "0";
           }
         }
       });
+
+      // Populate Agenda (Redesigned - Premium)
+      const months = [
+        "JAN",
+        "FEV",
+        "MAR",
+        "ABR",
+        "MAI",
+        "JUN",
+        "JUL",
+        "AGO",
+        "SET",
+        "OUT",
+        "NOV",
+        "DEZ",
+      ];
+      const themes = [
+        "Planejamento Estratégico",
+        "Gestão Financeira",
+        "Vendas & Negociação",
+        "Marketing Digital",
+        "Liderança & Cultura",
+        "Processos & Operações",
+        "Experiência do Cliente",
+        "Inovação & Tecnologia",
+        "Gestão de Pessoas",
+        "Expansão & Franquias",
+        "Planejamento Tributário",
+        "Encerramento & Premiação",
+      ];
+      const agendaIcons = [
+        "map",
+        "dollar-sign",
+        "shopping-bag",
+        "smartphone",
+        "users",
+        "settings",
+        "heart",
+        "zap",
+        "smile",
+        "globe",
+        "file-text",
+        "star",
+      ];
+
+      const agendaGrid = document.getElementById("agenda-grid");
+      months.forEach((m, i) => {
+        agendaGrid.innerHTML += `
+                <div class="relative bg-neutral-900/50 border border-white/10 rounded-xl overflow-hidden hover:border-gold transition-all duration-500 group fade-in-up h-full flex flex-col p-6 hover:bg-neutral-900 hover:shadow-[0_0_30px_rgba(198,168,90,0.1)]" style="transition-delay: ${i * 50}ms">
+                    <!-- Background Number -->
+                    <div class="absolute -right-4 -top-6 text-[8rem] font-bold text-white/5 group-hover:text-gold/10 transition-colors select-none pointer-events-none">
+                        ${(i + 1).toString().padStart(2, "0")}
+                    </div>
+                    
+                    <div class="relative z-10 flex flex-col h-full">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="px-3 py-1 bg-gold/10 border border-gold/20 rounded text-gold text-xs font-bold tracking-widest uppercase">
+                                ${m}
+                            </div>
+                            <div class="p-2 rounded-full bg-white/5 text-neutral-400 group-hover:text-gold group-hover:bg-gold/10 transition-all">
+                                <i data-lucide="${agendaIcons[i]}" class="w-5 h-5"></i>
+                            </div>
+                        </div>
+                        
+                        <h3 class="text-xl font-bold text-white mb-2 group-hover:text-gold transition-colors leading-tight">
+                            ${themes[i]}
+                        </h3>
+                        
+                        <div class="mt-auto pt-4 border-t border-white/5 w-full">
+                            <div class="flex items-center gap-2 text-xs text-neutral-500 group-hover:text-neutral-300 transition-colors uppercase tracking-wider">
+                                <span>Saiba mais</span>
+                                <i data-lucide="arrow-right" class="w-3 h-3 transform group-hover:translate-x-1 transition-transform"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+      });
+
+      // Populate Environment (6 images with descriptions)
+      const envImages = [
+        {
+          src: "imagens/terreo.jpg",
+          desc: "Área de Convivência",
+        },
+        {
+          src: "imagens/cafeteria.jpg",
+          desc: "Cafeteria Exclusiva",
+        },
+        {
+          src: "imagens/Auditório.jpg",
+          desc: "Auditório Principal",
+        },
+        {
+          src: "imagens/sala de reunião.jpg",
+          desc: "Salas de Reunião",
+        },
+        {
+          src: "imagens/externo.jpg",
+          desc: "Espaço Externo",
+        },
+        {
+          src: "imagens/1 andar.jpg",
+          desc: "Lounge Executivo",
+        },
+      ];
+      const envGrid = document.getElementById("environment-grid");
+      envImages.forEach((item, i) => {
+        envGrid.innerHTML += `
+                <div class="group relative aspect-video overflow-hidden rounded-lg cursor-pointer fade-in-up" style="transition-delay: ${i * 100}ms" onclick="openLightbox('${item.src}')">
+                    <img src="${item.src}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                        <i data-lucide="maximize" class="text-white w-8 h-8"></i>
+                    </div>
+                    <div class="absolute bottom-0 left-0 right-0 bg-black/80 p-3 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                        <p class="text-gold text-sm font-bold uppercase tracking-wider text-center">${item.desc}</p>
+                    </div>
+                </div>
+            `;
+      });
+
+      // Events Carousel Logic (Updated for Video)
+      const events = [
+        {
+          title: "Inauguração Oficial",
+          subtitle: "Marco Histórico",
+          desc: "A grande noite de inauguração do maior hub de negócios.",
+          video: "videos/— O HUB Avançar inaugura uma nova fase para o ecossistema empreendedor de Americana.Mais do que .mp4",
+          poster:
+            "imagens/inauguração_hub.png",
+        },
+        {
+          title: "Mastermind Liderança",
+          subtitle: "Estratégia Pura",
+          desc: "Encontro exclusivo com os maiores líderes do mercado.",
+          video: "videos/copy_72AF2575-DD44-4270-A2BB-D76E0018DFFC.mp4",
+          poster:
+            "imagens/talkinvest.png",
+        },
+        {
+          title: "Imersão Vendas",
+          subtitle: "Alta Performance",
+          desc: "Treinamento prático sobre técnicas de negociação.",
+          video: "videos/— A inauguração do HUB Avançar foi um dia memorável.Cada detalhe, cada entrega e cada palestra e.mp4",
+          poster:
+            "imagens/rafamarcos.png",
+        },
+        {
+          title: "Workshop Gestão",
+          subtitle: "Processos",
+          desc: "Otimização de recursos e gestão eficiente.",
+          video: "videos/Faturamento é ego, lucro é sobrevivência. Muitos empresários se perdem na “onda do faturamento”, (1).mp4",
+          poster:
+            "imagens/placeholder_melque_dourado.png",
+        },
+        {
+          title: "Networking Night",
+          subtitle: "Conexões",
+          desc: "Rodada de negócios e oportunidades.",
+          video: "videos/⸻Equity não é só participação.Equity é estratégia.Pensar equity é pensar em valor de mercado,é c.mp4",
+          poster:
+            "imagens/placeholder_equity.png",
+        },
+      ];
+      let currentEvent = 0;
+      const carouselContainer = document.getElementById("events-carousel");
+
+      function renderEvent() {
+        const evt = events[currentEvent];
+        carouselContainer.innerHTML = `
+                <div class="grid grid-cols-1 md:grid-cols-2 min-h-[500px] animate-fade-in">
+                    <div class="relative h-[300px] md:h-full group cursor-pointer overflow-hidden bg-black">
+                        <video class="absolute inset-0 w-full h-full object-cover" poster="${evt.poster}" playsinline>
+                            <source src="${evt.video}" type="video/mp4">
+                        </video>
+                        <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors pointer-events-none"></div>
+                        <div class="absolute inset-0 flex items-center justify-center z-10" onclick="this.previousElementSibling.previousElementSibling.play(); this.style.display='none'">
+                            <div class="w-16 h-16 rounded-full bg-gold/90 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform"><i data-lucide="play" class="text-black fill-black ml-1 w-6 h-6"></i></div>
+                        </div>
+                    </div>
+                    <div class="p-8 md:p-12 flex flex-col justify-center bg-neutral-900/50">
+                        <h3 class="text-2xl md:text-3xl font-bold text-white mb-2 leading-tight">${evt.title}</h3>
+                        <p class="text-gold font-medium mb-6 uppercase tracking-wide text-sm">${evt.subtitle}</p>
+                        <p class="text-neutral-400 leading-relaxed mb-8">${evt.desc}</p>
+                        <button class="flex items-center gap-2 text-gold font-bold text-sm tracking-widest uppercase hover:text-white transition-colors group w-fit">Assista ao vídeo <i data-lucide="arrow-up-right" class="w-4 h-4"></i></button>
+                    </div>
+                </div>
+            `;
+        lucide.createIcons();
+      }
+      function nextEvent() {
+        currentEvent = (currentEvent + 1) % events.length;
+        renderEvent();
+      }
+      function prevEvent() {
+        currentEvent = (currentEvent - 1 + events.length) % events.length;
+        renderEvent();
+      }
+      renderEvent();
+
+      // Hub Video Toggle
+      window.toggleHubVideo = () => {
+        const video = document.getElementById("hub-main-video");
+        const overlay = document.getElementById("hub-video-overlay");
+        if (video.paused) {
+          video.play();
+          overlay.classList.add("opacity-0", "pointer-events-none");
+          video.setAttribute("controls", "true");
+        }
+      };
+
+      // Testimonials (Reels with Video Controls)
+      const reels = [
+        {
+          name: "Carlos Silva",
+          role: "CEO Tech",
+          video: "videos/depoimento cafe lalau.mp4",
+          poster:
+            "imagens/placeholder_cafe_lalau.png",
+        },
+        {
+          name: "Ana Souza",
+          role: "Diretora",
+          video: "videos/depoimento Gui.mp4",
+          poster:
+            "imagens/placeholder_gui.png",
+        },
+        {
+          name: "Roberto Lima",
+          role: "Fundador",
+          video: "videos/depoimento hiped invest.mp4",
+          poster:
+            "imagens/placeholder_hiped.png",
+        },
+        {
+          name: "Julia Santos",
+          role: "Investidora",
+          video: "videos/depoimento isaias pires.mp4",
+          poster:
+            "imagens/placeholder_isaias_pires.png",
+        },
+        {
+          name: "Pedro Costa",
+          role: "Agro",
+          video: "videos/depoimento leo marião.mp4",
+          poster:
+            "imagens/placeholder_leo.png",
+        },
+        {
+          name: "Mariana Dias",
+          role: "Startups",
+          video: "videos/depoimento Luiz otavio.mp4",
+          poster:
+            "imagens/placeholder_luis_otavio.png",
+        },
+        {
+          name: "Lucas Ferreira",
+          role: "Indústria",
+          video: "videos/Depoimento Rogerio Vale.mp4",
+          poster:
+            "imagens/placeholder_rogerio_vale.png",
+        },
+        {
+          name: "Fernanda Lima",
+          role: "Saúde",
+          video: "videos/sobre a inauguração.mp4",
+          poster:
+            "imagens/placeholder_sobre.png",
+        },
+      ];
+
+      function createReelCard(reel, index) {
+        return `
+                <div class="relative w-full aspect-[9/16] rounded-xl overflow-hidden cursor-pointer group border border-white/10 hover:border-gold transition-colors" onclick="togglePlay(this)">
+                    <video class="absolute inset-0 w-full h-full object-cover" poster="${reel.poster}" playsinline loop muted>
+                        <source src="${reel.video}" type="video/mp4">
+                    </video>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80 pointer-events-none"></div>
+                    
+                    <!-- Controls -->
+                    <button class="absolute top-3 right-3 w-8 h-8 bg-black/50 rounded-full flex items-center justify-center text-white hover:bg-gold hover:text-black transition-colors z-20" onclick="event.stopPropagation(); toggleMute(this)">
+                        <i data-lucide="volume-x" class="w-4 h-4"></i>
+                    </button>
+                    
+                    <div class="absolute inset-0 flex items-center justify-center z-10 play-btn transition-opacity duration-300">
+                        <div class="w-12 h-12 rounded-full bg-gold/90 flex items-center justify-center shadow-lg"><i data-lucide="play" class="text-black fill-black ml-1 w-5 h-5"></i></div>
+                    </div>
+
+                    <div class="absolute bottom-0 left-0 right-0 p-4 z-20 pointer-events-none">
+                        <h3 class="text-white font-bold text-lg leading-tight">${reel.name}</h3>
+                        <p class="text-gold text-xs uppercase tracking-wider">${reel.role}</p>
+                    </div>
+                </div>
+            `;
+      }
+
+      // Mock Play/Mute functions
+      window.togglePlay = (card) => {
+        const video = card.querySelector("video");
+        const btn = card.querySelector(".play-btn");
+
+        if (video.paused) {
+          video.play();
+          btn.style.opacity = "0";
+        } else {
+          video.pause();
+          btn.style.opacity = "1";
+        }
+      };
+
+      window.toggleMute = (btn) => {
+        const card = btn.closest("div");
+        const video = card.querySelector("video");
+        const isActive = btn.classList.contains("bg-gold");
+
+        video.muted = !video.muted;
+
+        if (isActive) {
+          btn.classList.remove("bg-gold", "text-black");
+          btn.innerHTML = '<i data-lucide="volume-x" class="w-4 h-4"></i>';
+        } else {
+          btn.classList.add("bg-gold", "text-black");
+          btn.innerHTML = '<i data-lucide="volume-2" class="w-4 h-4"></i>';
+        }
+        lucide.createIcons();
+      };
+
+      document.getElementById("testimonials-top").innerHTML = reels
+        .slice(0, 4)
+        .map((r, i) => createReelCard(r, i))
+        .join("");
+      document.getElementById("testimonials-bottom").innerHTML = reels
+        .slice(4, 8)
+        .map((r, i) => createReelCard(r, i))
+        .join("");
+      lucide.createIcons(); // Refresh icons for injected content
+
+      // Lightbox Logic
+      const lightbox = document.getElementById("lightbox");
+      const lightboxImg = document.getElementById("lightbox-img");
+      window.openLightbox = (src) => {
+        lightboxImg.src = src;
+        lightbox.classList.remove("hidden");
+        document.body.style.overflow = "hidden";
+      };
+      window.closeLightbox = () => {
+        lightbox.classList.add("hidden");
+        document.body.style.overflow = "";
+      };
+
+      // Observer
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.1 },
+      );
+      document
+        .querySelectorAll(".fade-in-up, .slide-in-left, .slide-in-right")
+        .forEach((el) => observer.observe(el));
     </script>
   </body>
 </html>
