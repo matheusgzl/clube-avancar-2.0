@@ -9,7 +9,7 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="shortcut icon" href="imagens/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="imagens/favicon.ico" type="image/x-icon" />
     <script src="https://unpkg.com/lucide@latest"></script>
     <script>
       tailwind.config = {
@@ -128,18 +128,26 @@
       .animate-spin-y {
         animation: spin-y 8s linear infinite;
       }
+
     </style>
   </head>
   <body class="selection:bg-gold selection:text-black">
     <!-- Navbar -->
     <nav
-      class="fixed top-0 left-0 right-0 z-50 bg-black border-b border-white/10 py-3"
+      class="fixed top-0 left-0 right-0 z-50 bg-transparent py-3 transition-all duration-300" id="main-nav"
     >
       <div class="container mx-auto px-4 flex items-center justify-between">
         <a href="#hero" class="flex items-center gap-2 group">
           <!-- Substitua o src abaixo pelo caminho da sua imagem de logo -->
-            <img src="imagens/logo clube avançar.png" alt="Clube Avançar Logo" class="h-10 w-auto object-contain hover:opacity-80 transition-opacity">
-            <span class="font-bold text-sm tracking-widest uppercase text-white group-hover:text-gold transition-colors">Clube Avançar</span> 
+          <img
+            src="imagens/logo clube avançar.png"
+            alt="Clube Avançar Logo"
+            class="h-10 w-auto object-contain hover:opacity-80 transition-opacity"
+          />
+          <span
+            class="font-bold text-sm tracking-widest uppercase text-white group-hover:text-gold transition-colors"
+            >Clube Avançar</span
+          >
         </a>
 
         <!-- Desktop Menu -->
@@ -154,7 +162,7 @@
             class="menu-link text-xs font-medium text-neutral-400 hover:text-gold transition-colors uppercase tracking-widest"
             >Agenda</a
           >
-          
+
           <a
             href="#encontros"
             class="menu-link text-xs font-medium text-neutral-400 hover:text-gold transition-colors uppercase tracking-widest"
@@ -264,6 +272,7 @@
             background-size: cover;
             background-position: center bottom;
             background-repeat: no-repeat;
+            background-attachment: fixed;
           "
         ></div>
         <div
@@ -404,153 +413,319 @@
 
     <!-- Pillars -->
     <section id="pilares" class="py-24 bg-black relative overflow-hidden">
-        <!-- Background Grid -->
-        <div class="absolute inset-0 bg-[linear-gradient(to_right,#1a1a1a_1px,transparent_1px),linear-gradient(to_bottom,#1a1a1a_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-20 pointer-events-none" style="mask-image: radial-gradient(ellipse 60% 50% at 50% 50%, #000 70%, transparent 100%); -webkit-mask-image: radial-gradient(ellipse 60% 50% at 50% 50%, #000 70%, transparent 100%);"></div>
+      <!-- Background Grid -->
+      <div
+        class="absolute inset-0 bg-[linear-gradient(to_right,#1a1a1a_1px,transparent_1px),linear-gradient(to_bottom,#1a1a1a_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-20 pointer-events-none"
+        style="
+          mask-image: radial-gradient(
+            ellipse 60% 50% at 50% 50%,
+            #000 70%,
+            transparent 100%
+          );
+          -webkit-mask-image: radial-gradient(
+            ellipse 60% 50% at 50% 50%,
+            #000 70%,
+            transparent 100%
+          );
+        "
+      ></div>
 
-        <div class="container mx-auto px-4 relative z-10">
-            <div class="text-center mb-12 fade-in-up">
-                <h2 class="text-3xl md:text-5xl font-serif font-bold text-white mb-4">12 Pilares na <span class="text-gold">Gestão de Negócios</span> do Hub Avançar</h2>
-                <div class="w-24 h-1 bg-gold mx-auto"></div>
-            </div>
-            <div class="flex flex-col items-center gap-16 fade-in-up">
-                
-                <!-- Top: Investimentos -->
-                <div class="flex flex-col items-center gap-2 md:gap-4">
-                    <div class="relative group cursor-pointer flex flex-col items-center justify-center text-center p-2 md:p-4 rounded-lg border border-white/5 bg-white/5 hover:bg-white/10 hover:border-gold/50 transition-all duration-300 w-auto md:w-full max-w-[140px] md:max-w-xs">
-                        <div class="p-1.5 md:p-2 rounded-full bg-gold/10 text-gold group-hover:text-gold-neon group-hover:shadow-[0_0_15px_rgba(255,208,0,0.3)] transition-all mb-1 md:mb-2">
-                            <i data-lucide="arrow-up-right" class="w-4 h-4 md:w-6 md:h-6"></i>
-                        </div>
-                        <span class="font-medium text-white uppercase tracking-wide text-[8px] md:text-sm">INVESTIMENTOS</span>
-                        <p class="text-[7px] md:text-xs text-neutral-400 uppercase tracking-widest mt-0.5 md:mt-1">Crescimento & Evolução</p>
-                        
-                        <!-- Line down -->
-                        <div class="absolute top-full left-1/2 w-px h-8 md:h-16 bg-gradient-to-b from-gold/50 to-transparent -translate-x-1/2"></div>
-                    </div>
-                </div>
-
-                <!-- Middle Layer -->
-                <div class="grid grid-cols-3 gap-1 md:gap-8 w-full max-w-6xl items-center relative">
-                    <!-- Left: Receita -->
-                    <div class="flex flex-col gap-4 md:gap-6 items-end">
-                        <h4 class="text-neutral-500 text-[7px] md:text-sm uppercase tracking-widest mb-1 md:mb-2 text-right w-full">Receita gera energia</h4>
-                        
-                        <!-- Marketing -->
-                        <div class="relative group cursor-pointer flex items-center gap-1.5 md:gap-4 p-1.5 md:p-4 rounded-lg border border-white/5 bg-white/5 hover:bg-white/10 hover:border-gold/50 transition-all duration-300 w-full justify-end md:justify-center text-right md:text-center flex-row md:flex-col">
-                            <div class="p-1 md:p-2 rounded-full bg-gold/10 text-gold group-hover:text-gold-neon transition-all order-2 md:order-1">
-                                <i data-lucide="megaphone" class="w-3.5 h-3.5 md:w-6 md:h-6"></i>
-                            </div>
-                            <span class="font-medium text-white uppercase tracking-wide text-[8px] md:text-sm order-1 md:order-2 leading-tight">Marketing</span>
-                        </div>
-
-                        <!-- Vendas -->
-                        <div class="relative group cursor-pointer flex items-center gap-1.5 md:gap-4 p-1.5 md:p-4 rounded-lg border border-white/5 bg-white/5 hover:bg-white/10 hover:border-gold/50 transition-all duration-300 w-full justify-end md:justify-center text-right md:text-center flex-row md:flex-col">
-                            <div class="p-1 md:p-2 rounded-full bg-gold/10 text-gold group-hover:text-gold-neon transition-all order-2 md:order-1">
-                                <i data-lucide="trending-up" class="w-3.5 h-3.5 md:w-6 md:h-6"></i>
-                            </div>
-                            <span class="font-medium text-white uppercase tracking-wide text-[8px] md:text-sm order-1 md:order-2 leading-tight">Vendas</span>
-                        </div>
-                    </div>
-
-                    <!-- Center: Gestão -->
-                    <div class="flex justify-center relative">
-                        <div class="absolute top-1/2 left-0 right-0 h-px bg-gold/20 -z-10 block"></div>
-                        <div class="relative w-24 h-24 md:w-64 md:h-64 rounded-full border border-gold/30 flex flex-col items-center justify-center bg-black/80 backdrop-blur-sm shadow-[0_0_30px_rgba(198,168,90,0.1)] md:shadow-[0_0_50px_rgba(198,168,90,0.1)] group hover:shadow-[0_0_80px_rgba(198,168,90,0.2)] transition-shadow duration-500">
-                            <div class="absolute inset-0 rounded-full border border-gold/10 animate-spin-slow"></div>
-                            <div class="absolute inset-2 md:inset-4 rounded-full border border-gold/10 animate-spin-reverse-slow"></div>
-                            <h3 class="text-[8px] md:text-2xl font-bold text-white text-center leading-tight">
-                                GESTÃO &<br /><span class="text-gold">GOVERNANÇA</span>
-                            </h3>
-                            <div class="mt-1 md:mt-4 flex flex-wrap justify-center gap-1 md:gap-2 text-[5px] md:text-[10px] text-neutral-400 uppercase tracking-wider">
-                                <span>Direção</span><span class="hidden md:inline">•</span><span>Estratégia</span><span class="hidden md:inline">•</span><span>KPIs</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Right: Entrega -->
-                    <div class="flex flex-col gap-4 md:gap-6 items-start">
-                        <h4 class="text-neutral-500 text-[7px] md:text-sm uppercase tracking-widest mb-1 md:mb-2 text-left w-full">Entrega transforma promessa</h4>
-                        
-                        <!-- Pessoas -->
-                        <div class="relative group cursor-pointer flex items-center gap-1.5 md:gap-4 p-1.5 md:p-4 rounded-lg border border-white/5 bg-white/5 hover:bg-white/10 hover:border-gold/50 transition-all duration-300 w-full justify-start md:justify-center text-left md:text-center flex-row md:flex-col">
-                            <div class="p-1 md:p-2 rounded-full bg-gold/10 text-gold group-hover:text-gold-neon transition-all">
-                                <i data-lucide="users" class="w-3.5 h-3.5 md:w-6 md:h-6"></i>
-                            </div>
-                            <span class="font-medium text-white uppercase tracking-wide text-[8px] md:text-sm leading-tight">Pessoas & Cultura</span>
-                        </div>
-
-                        <!-- Operações -->
-                        <div class="relative group cursor-pointer flex items-center gap-1.5 md:gap-4 p-1.5 md:p-4 rounded-lg border border-white/5 bg-white/5 hover:bg-white/10 hover:border-gold/50 transition-all duration-300 w-full justify-start md:justify-center text-left md:text-center flex-row md:flex-col">
-                            <div class="p-1 md:p-2 rounded-full bg-gold/10 text-gold group-hover:text-gold-neon transition-all">
-                                <i data-lucide="settings" class="w-3.5 h-3.5 md:w-6 md:h-6"></i>
-                            </div>
-                            <span class="font-medium text-white uppercase tracking-wide text-[8px] md:text-sm leading-tight">Operações & Processos</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Transversal Pillars -->
-                <div class="flex gap-2 md:gap-8 justify-center w-full max-w-2xl relative">
-                    <div class="absolute bottom-full left-1/2 w-px h-8 md:h-16 bg-gradient-to-t from-gold/50 to-transparent -translate-x-1/2"></div>
-                    
-                    <!-- Comunicação -->
-                    <div class="relative group cursor-pointer flex items-center gap-1.5 md:gap-4 p-2 md:p-4 rounded-lg border border-white/5 bg-white/5 hover:bg-white/10 hover:border-gold/50 transition-all duration-300 w-auto md:w-full max-w-[140px] md:max-w-xs justify-center text-center flex-col py-2 md:py-3 px-3 md:px-6">
-                        <div class="p-1.5 md:p-2 rounded-full bg-gold/10 text-gold group-hover:text-gold-neon transition-all">
-                            <i data-lucide="message-square" class="w-3.5 h-3.5 md:w-5 md:h-5"></i>
-                        </div>
-                        <span class="font-medium text-white uppercase tracking-wide text-[8px] md:text-xs">Comunicação</span>
-                    </div>
-
-                    <!-- Tecnologia -->
-                    <div class="relative group cursor-pointer flex items-center gap-1.5 md:gap-4 p-2 md:p-4 rounded-lg border border-white/5 bg-white/5 hover:bg-white/10 hover:border-gold/50 transition-all duration-300 w-auto md:w-full max-w-[140px] md:max-w-xs justify-center text-center flex-col py-2 md:py-3 px-3 md:px-6">
-                        <div class="p-1.5 md:p-2 rounded-full bg-gold/10 text-gold group-hover:text-gold-neon transition-all">
-                            <i data-lucide="cpu" class="w-3.5 h-3.5 md:w-5 md:h-5"></i>
-                        </div>
-                        <span class="font-medium text-white uppercase tracking-wide text-[8px] md:text-xs">Tecnologia</span>
-                    </div>
-                </div>
-
-                <!-- Bottom: Backoffice -->
-                <div class="w-full max-w-4xl relative mt-4 md:mt-8">
-                    <div class="absolute -top-6 md:-top-8 left-1/2 -translate-x-1/2 text-center">
-                        <span class="text-gold text-[8px] md:text-xs uppercase tracking-[0.2em] bg-black px-2">Camada Backoffice</span>
-                    </div>
-                    <div class="grid grid-cols-4 gap-2 md:gap-4 bg-neutral-900/50 border-t-2 border-gold p-2 md:p-6 rounded-b-xl backdrop-blur-sm relative overflow-hidden">
-                        <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold to-transparent opacity-50"></div>
-                        
-                        <!-- Contábil -->
-                        <div class="flex flex-col items-center justify-center text-center gap-1 md:gap-3 group cursor-pointer hover:-translate-y-1 transition-transform duration-300">
-                            <div class="p-1.5 md:p-3 rounded-lg bg-black border border-white/10 group-hover:border-gold transition-colors">
-                                <i data-lucide="calculator" class="text-neutral-400 group-hover:text-gold transition-colors w-3 h-3 md:w-5 md:h-5"></i>
-                            </div>
-                            <span class="text-[8px] md:text-xs font-medium text-neutral-300 uppercase tracking-wider group-hover:text-white transition-colors">Contábil</span>
-                        </div>
-                        <!-- Tributário -->
-                        <div class="flex flex-col items-center justify-center text-center gap-1 md:gap-3 group cursor-pointer hover:-translate-y-1 transition-transform duration-300">
-                            <div class="p-1.5 md:p-3 rounded-lg bg-black border border-white/10 group-hover:border-gold transition-colors">
-                                <i data-lucide="landmark" class="text-neutral-400 group-hover:text-gold transition-colors w-3 h-3 md:w-5 md:h-5"></i>
-                            </div>
-                            <span class="text-[8px] md:text-xs font-medium text-neutral-300 uppercase tracking-wider group-hover:text-white transition-colors">Tributário</span>
-                        </div>
-                        <!-- Financeiro -->
-                        <div class="flex flex-col items-center justify-center text-center gap-1 md:gap-3 group cursor-pointer hover:-translate-y-1 transition-transform duration-300">
-                            <div class="p-1.5 md:p-3 rounded-lg bg-black border border-white/10 group-hover:border-gold transition-colors">
-                                <i data-lucide="scale" class="text-neutral-400 group-hover:text-gold transition-colors w-3 h-3 md:w-5 md:h-5"></i>
-                            </div>
-                            <span class="text-[8px] md:text-xs font-medium text-neutral-300 uppercase tracking-wider group-hover:text-white transition-colors">Financeiro</span>
-                        </div>
-                        <!-- Jurídico -->
-                        <div class="flex flex-col items-center justify-center text-center gap-1 md:gap-3 group cursor-pointer hover:-translate-y-1 transition-transform duration-300">
-                            <div class="p-1.5 md:p-3 rounded-lg bg-black border border-white/10 group-hover:border-gold transition-colors">
-                                <i data-lucide="gavel" class="text-neutral-400 group-hover:text-gold transition-colors w-3 h-3 md:w-5 md:h-5"></i>
-                            </div>
-                            <span class="text-[8px] md:text-xs font-medium text-neutral-300 uppercase tracking-wider group-hover:text-white transition-colors">Jurídico</span>
-                        </div>
-                    </div>
-                    <p class="text-center text-neutral-500 text-[10px] md:text-sm mt-2 md:mt-4 italic">"A base que sustenta tudo."</p>
-                </div>
-
-            </div>
+      <div class="container mx-auto px-4 relative z-10">
+        <div class="text-center mb-12 fade-in-up">
+          <h2 class="text-3xl md:text-5xl font-serif font-bold text-white mb-4">
+            12 Pilares na <span class="text-gold">Gestão de Negócios</span> do
+            Hub Avançar
+          </h2>
+          <div class="w-24 h-1 bg-gold mx-auto"></div>
         </div>
+        <div class="flex flex-col items-center gap-16 fade-in-up">
+          <!-- Top: Investimentos -->
+          <div class="flex flex-col items-center gap-2 md:gap-4">
+            <div
+              class="relative group cursor-pointer flex flex-col items-center justify-center text-center p-2 md:p-4 rounded-lg border border-white/5 bg-white/5 hover:bg-white/10 hover:border-gold/50 transition-all duration-300 w-auto md:w-full max-w-[140px] md:max-w-xs"
+            >
+              <div
+                class="p-1.5 md:p-2 rounded-full bg-gold/10 text-gold group-hover:text-gold-neon group-hover:shadow-[0_0_15px_rgba(255,208,0,0.3)] transition-all mb-1 md:mb-2"
+              >
+                <i
+                  data-lucide="arrow-up-right"
+                  class="w-4 h-4 md:w-6 md:h-6"
+                ></i>
+              </div>
+              <span
+                class="font-medium text-white uppercase tracking-wide text-[8px] md:text-sm"
+                >INVESTIMENTOS</span
+              >
+              <p
+                class="text-[7px] md:text-xs text-neutral-400 uppercase tracking-widest mt-0.5 md:mt-1"
+              >
+                Crescimento & Evolução
+              </p>
+
+              <!-- Line down -->
+              <div
+                class="absolute top-full left-1/2 w-px h-8 md:h-16 bg-gradient-to-b from-gold/50 to-transparent -translate-x-1/2"
+              ></div>
+            </div>
+          </div>
+
+          <!-- Middle Layer -->
+          <div
+            class="grid grid-cols-3 gap-1 md:gap-8 w-full max-w-6xl items-center relative"
+          >
+            <!-- Left: Receita -->
+            <div class="flex flex-col gap-4 md:gap-6 items-end">
+              <h4
+                class="text-neutral-500 text-[7px] md:text-sm uppercase tracking-widest mb-1 md:mb-2 text-right w-full"
+              >
+                Receita gera energia
+              </h4>
+
+              <!-- Marketing -->
+              <div
+                class="relative group cursor-pointer flex items-center gap-1.5 md:gap-4 p-1.5 md:p-4 rounded-lg border border-white/5 bg-white/5 hover:bg-white/10 hover:border-gold/50 transition-all duration-300 w-full justify-end md:justify-center text-right md:text-center flex-row md:flex-col"
+              >
+                <div
+                  class="p-1 md:p-2 rounded-full bg-gold/10 text-gold group-hover:text-gold-neon transition-all order-2 md:order-1"
+                >
+                  <i
+                    data-lucide="megaphone"
+                    class="w-3.5 h-3.5 md:w-6 md:h-6"
+                  ></i>
+                </div>
+                <span
+                  class="font-medium text-white uppercase tracking-wide text-[8px] md:text-sm order-1 md:order-2 leading-tight"
+                  >Marketing</span
+                >
+              </div>
+
+              <!-- Vendas -->
+              <div
+                class="relative group cursor-pointer flex items-center gap-1.5 md:gap-4 p-1.5 md:p-4 rounded-lg border border-white/5 bg-white/5 hover:bg-white/10 hover:border-gold/50 transition-all duration-300 w-full justify-end md:justify-center text-right md:text-center flex-row md:flex-col"
+              >
+                <div
+                  class="p-1 md:p-2 rounded-full bg-gold/10 text-gold group-hover:text-gold-neon transition-all order-2 md:order-1"
+                >
+                  <i
+                    data-lucide="trending-up"
+                    class="w-3.5 h-3.5 md:w-6 md:h-6"
+                  ></i>
+                </div>
+                <span
+                  class="font-medium text-white uppercase tracking-wide text-[8px] md:text-sm order-1 md:order-2 leading-tight"
+                  >Vendas</span
+                >
+              </div>
+            </div>
+
+            <!-- Center: Gestão -->
+            <div class="flex justify-center relative">
+              <div
+                class="absolute top-1/2 left-0 right-0 h-px bg-gold/20 -z-10 block"
+              ></div>
+              <div
+                class="relative w-24 h-24 md:w-64 md:h-64 rounded-full border border-gold/30 flex flex-col items-center justify-center bg-black/80 backdrop-blur-sm shadow-[0_0_30px_rgba(198,168,90,0.1)] md:shadow-[0_0_50px_rgba(198,168,90,0.1)] group hover:shadow-[0_0_80px_rgba(198,168,90,0.2)] transition-shadow duration-500"
+              >
+                <div
+                  class="absolute inset-0 rounded-full border border-gold/10 animate-spin-slow"
+                ></div>
+                <div
+                  class="absolute inset-2 md:inset-4 rounded-full border border-gold/10 animate-spin-reverse-slow"
+                ></div>
+                <h3
+                  class="text-[8px] md:text-2xl font-bold text-white text-center leading-tight"
+                >
+                  GESTÃO &<br /><span class="text-gold">GOVERNANÇA</span>
+                </h3>
+                <div
+                  class="mt-1 md:mt-4 flex flex-wrap justify-center gap-1 md:gap-2 text-[5px] md:text-[10px] text-neutral-400 uppercase tracking-wider"
+                >
+                  <span>Direção</span><span class="hidden md:inline">•</span
+                  ><span>Estratégia</span><span class="hidden md:inline">•</span
+                  ><span>KPIs</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right: Entrega -->
+            <div class="flex flex-col gap-4 md:gap-6 items-start">
+              <h4
+                class="text-neutral-500 text-[7px] md:text-sm uppercase tracking-widest mb-1 md:mb-2 text-left w-full"
+              >
+                Entrega transforma promessa
+              </h4>
+
+              <!-- Pessoas -->
+              <div
+                class="relative group cursor-pointer flex items-center gap-1.5 md:gap-4 p-1.5 md:p-4 rounded-lg border border-white/5 bg-white/5 hover:bg-white/10 hover:border-gold/50 transition-all duration-300 w-full justify-start md:justify-center text-left md:text-center flex-row md:flex-col"
+              >
+                <div
+                  class="p-1 md:p-2 rounded-full bg-gold/10 text-gold group-hover:text-gold-neon transition-all"
+                >
+                  <i data-lucide="users" class="w-3.5 h-3.5 md:w-6 md:h-6"></i>
+                </div>
+                <span
+                  class="font-medium text-white uppercase tracking-wide text-[8px] md:text-sm leading-tight"
+                  >Pessoas & Cultura</span
+                >
+              </div>
+
+              <!-- Operações -->
+              <div
+                class="relative group cursor-pointer flex items-center gap-1.5 md:gap-4 p-1.5 md:p-4 rounded-lg border border-white/5 bg-white/5 hover:bg-white/10 hover:border-gold/50 transition-all duration-300 w-full justify-start md:justify-center text-left md:text-center flex-row md:flex-col"
+              >
+                <div
+                  class="p-1 md:p-2 rounded-full bg-gold/10 text-gold group-hover:text-gold-neon transition-all"
+                >
+                  <i
+                    data-lucide="settings"
+                    class="w-3.5 h-3.5 md:w-6 md:h-6"
+                  ></i>
+                </div>
+                <span
+                  class="font-medium text-white uppercase tracking-wide text-[8px] md:text-sm leading-tight"
+                  >Operações & Processos</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Transversal Pillars -->
+          <div
+            class="flex gap-2 md:gap-8 justify-center w-full max-w-2xl relative"
+          >
+            <div
+              class="absolute bottom-full left-1/2 w-px h-8 md:h-16 bg-gradient-to-t from-gold/50 to-transparent -translate-x-1/2"
+            ></div>
+
+            <!-- Comunicação -->
+            <div
+              class="relative group cursor-pointer flex items-center gap-1.5 md:gap-4 p-2 md:p-4 rounded-lg border border-white/5 bg-white/5 hover:bg-white/10 hover:border-gold/50 transition-all duration-300 w-auto md:w-full max-w-[140px] md:max-w-xs justify-center text-center flex-col py-2 md:py-3 px-3 md:px-6"
+            >
+              <div
+                class="p-1.5 md:p-2 rounded-full bg-gold/10 text-gold group-hover:text-gold-neon transition-all"
+              >
+                <i
+                  data-lucide="message-square"
+                  class="w-3.5 h-3.5 md:w-5 md:h-5"
+                ></i>
+              </div>
+              <span
+                class="font-medium text-white uppercase tracking-wide text-[8px] md:text-xs"
+                >Comunicação</span
+              >
+            </div>
+
+            <!-- Tecnologia -->
+            <div
+              class="relative group cursor-pointer flex items-center gap-1.5 md:gap-4 p-2 md:p-4 rounded-lg border border-white/5 bg-white/5 hover:bg-white/10 hover:border-gold/50 transition-all duration-300 w-auto md:w-full max-w-[140px] md:max-w-xs justify-center text-center flex-col py-2 md:py-3 px-3 md:px-6"
+            >
+              <div
+                class="p-1.5 md:p-2 rounded-full bg-gold/10 text-gold group-hover:text-gold-neon transition-all"
+              >
+                <i data-lucide="cpu" class="w-3.5 h-3.5 md:w-5 md:h-5"></i>
+              </div>
+              <span
+                class="font-medium text-white uppercase tracking-wide text-[8px] md:text-xs"
+                >Tecnologia</span
+              >
+            </div>
+          </div>
+
+          <!-- Bottom: Backoffice -->
+          <div class="w-full max-w-4xl relative mt-4 md:mt-8">
+            <div
+              class="absolute -top-6 md:-top-8 left-1/2 -translate-x-1/2 text-center"
+            >
+              <span
+                class="text-gold text-[8px] md:text-xs uppercase tracking-[0.2em] bg-black px-2"
+                >Camada Backoffice</span
+              >
+            </div>
+            <div
+              class="grid grid-cols-4 gap-2 md:gap-4 bg-neutral-900/50 border-t-2 border-gold p-2 md:p-6 rounded-b-xl backdrop-blur-sm relative overflow-hidden"
+            >
+              <div
+                class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold to-transparent opacity-50"
+              ></div>
+
+              <!-- Contábil -->
+              <div
+                class="flex flex-col items-center justify-center text-center gap-1 md:gap-3 group cursor-pointer hover:-translate-y-1 transition-transform duration-300"
+              >
+                <div
+                  class="p-1.5 md:p-3 rounded-lg bg-black border border-white/10 group-hover:border-gold transition-colors"
+                >
+                  <i
+                    data-lucide="calculator"
+                    class="text-neutral-400 group-hover:text-gold transition-colors w-3 h-3 md:w-5 md:h-5"
+                  ></i>
+                </div>
+                <span
+                  class="text-[8px] md:text-xs font-medium text-neutral-300 uppercase tracking-wider group-hover:text-white transition-colors"
+                  >Contábil</span
+                >
+              </div>
+              <!-- Tributário -->
+              <div
+                class="flex flex-col items-center justify-center text-center gap-1 md:gap-3 group cursor-pointer hover:-translate-y-1 transition-transform duration-300"
+              >
+                <div
+                  class="p-1.5 md:p-3 rounded-lg bg-black border border-white/10 group-hover:border-gold transition-colors"
+                >
+                  <i
+                    data-lucide="landmark"
+                    class="text-neutral-400 group-hover:text-gold transition-colors w-3 h-3 md:w-5 md:h-5"
+                  ></i>
+                </div>
+                <span
+                  class="text-[8px] md:text-xs font-medium text-neutral-300 uppercase tracking-wider group-hover:text-white transition-colors"
+                  >Tributário</span
+                >
+              </div>
+              <!-- Financeiro -->
+              <div
+                class="flex flex-col items-center justify-center text-center gap-1 md:gap-3 group cursor-pointer hover:-translate-y-1 transition-transform duration-300"
+              >
+                <div
+                  class="p-1.5 md:p-3 rounded-lg bg-black border border-white/10 group-hover:border-gold transition-colors"
+                >
+                  <i
+                    data-lucide="scale"
+                    class="text-neutral-400 group-hover:text-gold transition-colors w-3 h-3 md:w-5 md:h-5"
+                  ></i>
+                </div>
+                <span
+                  class="text-[8px] md:text-xs font-medium text-neutral-300 uppercase tracking-wider group-hover:text-white transition-colors"
+                  >Financeiro</span
+                >
+              </div>
+              <!-- Jurídico -->
+              <div
+                class="flex flex-col items-center justify-center text-center gap-1 md:gap-3 group cursor-pointer hover:-translate-y-1 transition-transform duration-300"
+              >
+                <div
+                  class="p-1.5 md:p-3 rounded-lg bg-black border border-white/10 group-hover:border-gold transition-colors"
+                >
+                  <i
+                    data-lucide="gavel"
+                    class="text-neutral-400 group-hover:text-gold transition-colors w-3 h-3 md:w-5 md:h-5"
+                  ></i>
+                </div>
+                <span
+                  class="text-[8px] md:text-xs font-medium text-neutral-300 uppercase tracking-wider group-hover:text-white transition-colors"
+                  >Jurídico</span
+                >
+              </div>
+            </div>
+            <p
+              class="text-center text-neutral-500 text-[10px] md:text-sm mt-2 md:mt-4 italic"
+            >
+              "A base que sustenta tudo."
+            </p>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- Annual Agenda (Redesigned) -->
@@ -1157,42 +1332,226 @@
       </div>
     </section>
 
-    <!-- Differential -->
-    <section
-      class="py-32 bg-black flex flex-col items-center justify-center min-h-[60vh]"
-    >
-      <div
-        class="flex flex-col md:flex-row gap-8 md:gap-16 items-center justify-center mb-16 px-4 text-center"
-      >
-        <div class="relative fade-in-up">
-          <h2
-            class="text-4xl md:text-5xl lg:text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-white to-neutral-600 uppercase tracking-tighter"
-          >
-            Ambiente
-          </h2>
-        </div>
-        <div class="relative fade-in-up delay-100">
-          <h2
-            class="text-4xl md:text-5xl lg:text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-white to-neutral-600 uppercase tracking-tighter"
-          >
-            Rede
-          </h2>
-        </div>
-        <div class="relative fade-in-up delay-200">
-          <h2
-            class="text-4xl md:text-5xl lg:text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-white to-neutral-600 uppercase tracking-tighter"
-          >
-            Constância
-          </h2>
-        </div>
+    <!-- Strategic Decision Block (Dois Caminhos) -->
+    <section id="ambiente" class="py-24 bg-black relative overflow-hidden">
+      <!-- Background Elements -->
+      <div class="absolute inset-0 pointer-events-none">
+        <div
+          class="absolute top-0 left-1/2 -translate-x-1/2 w-px h-full bg-gradient-to-b from-transparent via-white/5 to-transparent hidden md:block"
+        ></div>
       </div>
-      <div class="text-center px-4 fade-in-up delay-300">
-        <p class="text-xl md:text-2xl text-neutral-400 font-light">
-          "Empresários isolados estagnam.
-          <span class="text-gold font-medium text-glow"
-            >Empresários conectados evoluem.</span
-          >"
-        </p>
+
+      <div class="container mx-auto px-4 relative z-10">
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto mb-20"
+        >
+          <!-- Left Column: Empresário Isolado -->
+          <div
+            class="relative bg-neutral-900/20 border border-white/5 p-8 md:p-12 rounded-3xl fade-in-up group overflow-hidden backdrop-blur-sm"
+          >
+            <!-- Visual: Disconnected/Cold -->
+            <div
+              class="absolute inset-0 opacity-20 pointer-events-none"
+              style="
+                background-image: radial-gradient(
+                  circle at 2px 2px,
+                  rgba(255, 255, 255, 0.15) 1px,
+                  transparent 0
+                );
+                background-size: 24px 24px;
+              "
+            ></div>
+            <div
+              class="absolute top-0 right-0 w-64 h-64 bg-neutral-800/20 blur-[80px] rounded-full pointer-events-none"
+            ></div>
+
+            <div class="relative z-10 flex flex-col h-full">
+              <h3
+                class="text-2xl md:text-3xl font-bold text-neutral-500 mb-10 flex items-center gap-4"
+              >
+                <div
+                  class="p-3 bg-neutral-800/50 rounded-xl border border-white/5"
+                >
+                  <i data-lucide="user-x" class="w-6 h-6"></i>
+                </div>
+                Empresário Isolado
+              </h3>
+
+              <ul class="space-y-8 mb-12 flex-grow">
+                <li
+                  class="flex items-center gap-4 text-neutral-500 group-hover:text-neutral-400 transition-colors"
+                >
+                  <div class="w-1.5 h-1.5 bg-neutral-700 rounded-full"></div>
+                  <span class="text-lg md:text-xl font-light"
+                    >Decide sozinho</span
+                  >
+                </li>
+                <li
+                  class="flex items-center gap-4 text-neutral-500 group-hover:text-neutral-400 transition-colors"
+                >
+                  <div class="w-1.5 h-1.5 bg-neutral-700 rounded-full"></div>
+                  <span class="text-lg md:text-xl font-light"
+                    >Cresce no improviso</span
+                  >
+                </li>
+                <li
+                  class="flex items-center gap-4 text-neutral-500 group-hover:text-neutral-400 transition-colors"
+                >
+                  <div class="w-1.5 h-1.5 bg-neutral-700 rounded-full"></div>
+                  <span class="text-lg md:text-xl font-light"
+                    >Falta previsibilidade</span
+                  >
+                </li>
+                <li
+                  class="flex items-center gap-4 text-neutral-500 group-hover:text-neutral-400 transition-colors"
+                >
+                  <div class="w-1.5 h-1.5 bg-neutral-700 rounded-full"></div>
+                  <span class="text-lg md:text-xl font-light"
+                    >Opera no limite</span
+                  >
+                </li>
+                <li
+                  class="flex items-center gap-4 text-neutral-500 group-hover:text-neutral-400 transition-colors"
+                >
+                  <div class="w-1.5 h-1.5 bg-neutral-700 rounded-full"></div>
+                  <span class="text-lg md:text-xl font-light"
+                    >Sem ambiente estratégico</span
+                  >
+                </li>
+              </ul>
+
+              <p
+                class="text-sm text-neutral-600 uppercase tracking-[0.2em] font-bold border-t border-white/5 pt-8"
+              >
+                "Trabalha muito. Evolui pouco."
+              </p>
+            </div>
+          </div>
+
+          <!-- Right Column: Empresário Clube Avançar -->
+          <div
+            class="relative bg-neutral-900/60 border border-gold/30 p-8 md:p-12 rounded-3xl fade-in-up delay-200 shadow-[0_0_40px_rgba(198,168,90,0.05)] hover:shadow-[0_0_60px_rgba(198,168,90,0.15)] transition-all duration-500 group overflow-hidden"
+          >
+            <!-- Visual: Connected/Gold -->
+            <div
+              class="absolute inset-0 opacity-10 pointer-events-none"
+              style="
+                background-image:
+                  linear-gradient(rgba(198, 168, 90, 0.3) 1px, transparent 1px),
+                  linear-gradient(
+                    90deg,
+                    rgba(198, 168, 90, 0.3) 1px,
+                    transparent 1px
+                  );
+                background-size: 40px 40px;
+              "
+            ></div>
+            <div
+              class="absolute top-0 right-0 w-96 h-96 bg-gold/10 blur-[100px] rounded-full pointer-events-none animate-pulse-slow"
+            ></div>
+
+            <div class="relative z-10 flex flex-col h-full">
+              <h3
+                class="text-2xl md:text-3xl font-bold text-white mb-10 flex items-center gap-4"
+              >
+                <div
+                  class="p-3 bg-gold/20 rounded-xl border border-gold/30 text-gold shadow-[0_0_20px_rgba(198,168,90,0.2)]"
+                >
+                  <i data-lucide="users" class="w-6 h-6"></i>
+                </div>
+                <span class="text-glow">Empresário Clube Avançar</span>
+              </h3>
+
+              <ul class="space-y-8 mb-12 flex-grow">
+                <li
+                  class="flex items-center gap-4 text-white group-hover:translate-x-2 transition-transform duration-300"
+                >
+                  <div
+                    class="p-1 bg-gold rounded-full text-black shadow-[0_0_10px_rgba(198,168,90,0.5)]"
+                  >
+                    <i data-lucide="check" class="w-3 h-3 stroke-[4]"></i>
+                  </div>
+                  <span class="text-lg md:text-xl font-medium"
+                    >Decide com método</span
+                  >
+                </li>
+                <li
+                  class="flex items-center gap-4 text-white group-hover:translate-x-2 transition-transform duration-300 delay-75"
+                >
+                  <div
+                    class="p-1 bg-gold rounded-full text-black shadow-[0_0_10px_rgba(198,168,90,0.5)]"
+                  >
+                    <i data-lucide="check" class="w-3 h-3 stroke-[4]"></i>
+                  </div>
+                  <span class="text-lg md:text-xl font-medium"
+                    >Cresce com estrutura</span
+                  >
+                </li>
+                <li
+                  class="flex items-center gap-4 text-white group-hover:translate-x-2 transition-transform duration-300 delay-100"
+                >
+                  <div
+                    class="p-1 bg-gold rounded-full text-black shadow-[0_0_10px_rgba(198,168,90,0.5)]"
+                  >
+                    <i data-lucide="check" class="w-3 h-3 stroke-[4]"></i>
+                  </div>
+                  <span class="text-lg md:text-xl font-medium"
+                    >Tem previsibilidade</span
+                  >
+                </li>
+                <li
+                  class="flex items-center gap-4 text-white group-hover:translate-x-2 transition-transform duration-300 delay-150"
+                >
+                  <div
+                    class="p-1 bg-gold rounded-full text-black shadow-[0_0_10px_rgba(198,168,90,0.5)]"
+                  >
+                    <i data-lucide="check" class="w-3 h-3 stroke-[4]"></i>
+                  </div>
+                  <span class="text-lg md:text-xl font-medium"
+                    >Constrói sistema</span
+                  >
+                </li>
+                <li
+                  class="flex items-center gap-4 text-white group-hover:translate-x-2 transition-transform duration-300 delay-200"
+                >
+                  <div
+                    class="p-1 bg-gold rounded-full text-black shadow-[0_0_10px_rgba(198,168,90,0.5)]"
+                  >
+                    <i data-lucide="check" class="w-3 h-3 stroke-[4]"></i>
+                  </div>
+                  <span class="text-lg md:text-xl font-medium"
+                    >Evolui em grupo</span
+                  >
+                </li>
+              </ul>
+
+              <p
+                class="text-sm text-gold uppercase tracking-[0.2em] font-bold border-t border-gold/30 pt-8"
+              >
+                "Trabalha com direção. Evolui com consistência."
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer CTA -->
+        <div class="text-center fade-in-up delay-300 max-w-3xl mx-auto">
+          <h3
+            class="text-3xl md:text-5xl font-serif font-bold text-white mb-10 leading-tight"
+          >
+            Qual dos dois você <br class="hidden md:block" />escolhe ser?
+          </h3>
+          <a
+            href="#contato"
+            class="inline-flex items-center gap-4 bg-gold text-black px-12 py-6 rounded-full font-bold text-xl hover:bg-white transition-all shadow-[0_0_30px_rgba(198,168,90,0.4)] hover:shadow-[0_0_60px_rgba(255,255,255,0.5)] hover:scale-105 duration-300 group"
+          >
+            <span class="tracking-widest">EU ESCOLHO EVOLUIR</span>
+            <i
+              data-lucide="arrow-right"
+              class="w-6 h-6 group-hover:translate-x-1 transition-transform"
+            ></i>
+          </a>
+        </div>
       </div>
     </section>
 
@@ -1229,13 +1588,23 @@
       <div class="container mx-auto px-4">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
           <div class="text-center md:text-left">
-            <div class="flex items-center justify-center md:justify-start gap-3 mb-6">
+            <div
+              class="flex items-center justify-center md:justify-start gap-3 mb-6"
+            >
               <!-- Substitua o src abaixo pelo caminho da sua imagem de logo -->
-              <img src="imagens/logo clube avançar.png" alt="Clube Avançar Logo" class="h-10 w-auto object-contain">
-              <span class="text-white font-bold text-lg tracking-widest uppercase">Clube <span class="text-gold">Avançar</span></span>
+              <img
+                src="imagens/logo clube avançar.png"
+                alt="Clube Avançar Logo"
+                class="h-10 w-auto object-contain"
+              />
+              <span
+                class="text-white font-bold text-lg tracking-widest uppercase"
+                >Clube <span class="text-gold">Avançar</span></span
+              >
             </div>
             <p class="text-neutral-400 text-sm leading-relaxed">
-              A porta de entrada para se conectar ao maior Hub de Negócios, Educação, Desenvolvimento e Tecnologia do interior de SP.
+              A porta de entrada para se conectar ao maior Hub de Negócios,
+              Educação, Desenvolvimento e Tecnologia do interior de SP.
             </p>
           </div>
           <div class="text-center">
@@ -1314,6 +1683,21 @@
     </div>
 
     <script>
+
+      // Navbar Scroll Effect
+        const navbar = document.getElementById('main-nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.remove('bg-transparent', 'py-3');
+                navbar.classList.add('bg-black/90', 'backdrop-blur-md', 'border-b', 'border-white/10', 'py-2');
+            } else {
+                navbar.classList.add('bg-transparent', 'py-3');
+                navbar.classList.remove('bg-black/90', 'backdrop-blur-md', 'border-b', 'border-white/10', 'py-2');
+            }
+        });
+
+        
+
       lucide.createIcons();
 
       // Mobile Menu
@@ -1324,17 +1708,17 @@
       const mobileLinks = document.querySelectorAll(".mobile-link");
 
       function toggleMenu() {
-        const isClosed = drawer.classList.contains("translate-x-full");
-        if (isClosed) {
-          drawer.classList.remove("translate-x-full");
-          overlay.classList.remove("hidden", "opacity-0");
-          setTimeout(() => overlay.classList.remove("opacity-0"), 10);
-        } else {
-          drawer.classList.add("translate-x-full");
-          overlay.classList.add("opacity-0");
-          setTimeout(() => overlay.classList.add("hidden"), 300);
+            const isClosed = drawer.classList.contains('translate-x-full');
+            if (isClosed) {
+                drawer.classList.remove('translate-x-full');
+                overlay.classList.remove('hidden', 'opacity-0');
+                setTimeout(() => overlay.classList.remove('opacity-0'), 10);
+            } else {
+                drawer.classList.add('translate-x-full');
+                overlay.classList.add('opacity-0');
+                setTimeout(() => overlay.classList.add('hidden'), 300);
+            }
         }
-      }
 
       menuBtn.addEventListener("click", toggleMenu);
       closeMenuBtn.addEventListener("click", toggleMenu);
@@ -1485,42 +1869,41 @@
         {
           title: "Inauguração Oficial",
           subtitle: "Marco Histórico",
-          desc: "A grande noite de inauguração do maior hub de negócios.",
-          video: "videos/— O HUB Avançar inaugura uma nova fase para o ecossistema empreendedor de Americana.Mais do que .mp4",
-          poster:
-            "imagens/inauguração_hub.png",
+          desc: "O grande dia de inauguração do maior hub de negócios.",
+          video:
+            "videos/— O HUB Avançar inaugura uma nova fase para o ecossistema empreendedor de Americana.Mais do que .mp4",
+          poster: "imagens/inauguração_hub.png",
         },
         {
-          title: "Mastermind Liderança",
-          subtitle: "Estratégia Pura",
-          desc: "Encontro exclusivo com os maiores líderes do mercado.",
+          title: "Talk Invest",
+          subtitle: "Investimentos",
+          desc: "Palestra sobre oportunidades de investimento e captação de recursos.",
           video: "videos/copy_72AF2575-DD44-4270-A2BB-D76E0018DFFC.mp4",
-          poster:
-            "imagens/talkinvest.png",
+          poster: "imagens/talkinvest.png",
         },
         {
-          title: "Imersão Vendas",
-          subtitle: "Alta Performance",
-          desc: "Treinamento prático sobre técnicas de negociação.",
-          video: "videos/— A inauguração do HUB Avançar foi um dia memorável.Cada detalhe, cada entrega e cada palestra e.mp4",
-          poster:
-            "imagens/rafamarcos.png",
+          title: "Rafa Marcos",
+          subtitle: "Próposito",
+          desc: "A importância de ter um propósito claro para guiar o crescimento do negócio.",
+          video:
+            "videos/— A inauguração do HUB Avançar foi um dia memorável.Cada detalhe, cada entrega e cada palestra e.mp4",
+          poster: "imagens/rafamarcos.png",
         },
         {
-          title: "Workshop Gestão",
-          subtitle: "Processos",
-          desc: "Otimização de recursos e gestão eficiente.",
-          video: "videos/Faturamento é ego, lucro é sobrevivência. Muitos empresários se perdem na “onda do faturamento”, (1).mp4",
-          poster:
-            "imagens/placeholder_melque_dourado.png",
+          title: "Melque Dourado",
+          subtitle: "Crescimento de Empresas",
+          desc: "Palestra sobre estratégias de crescimento sustentável e inovação empresarial.",
+          video:
+            "videos/Faturamento é ego, lucro é sobrevivência. Muitos empresários se perdem na “onda do faturamento”, (1).mp4",
+          poster: "imagens/placeholder_melque_dourado.png",
         },
         {
-          title: "Networking Night",
-          subtitle: "Conexões",
-          desc: "Rodada de negócios e oportunidades.",
-          video: "videos/⸻Equity não é só participação.Equity é estratégia.Pensar equity é pensar em valor de mercado,é c.mp4",
-          poster:
-            "imagens/placeholder_equity.png",
+          title: "Equity: Estratégia de Valor",
+          subtitle: "Valor de Mercado",
+          desc: "Palestra sobre a importância de pensar em valor de mercado e estratégias de equity.",
+          video:
+            "videos/⸻Equity não é só participação.Equity é estratégia.Pensar equity é pensar em valor de mercado,é c.mp4",
+          poster: "imagens/placeholder_equity.png",
         },
       ];
       let currentEvent = 0;
@@ -1728,6 +2111,24 @@
       document
         .querySelectorAll(".fade-in-up, .slide-in-left, .slide-in-right")
         .forEach((el) => observer.observe(el));
+
+      // Hero Parallax Effect
+      const heroSection = document.getElementById("hero");
+      const heroBg = document.getElementById("hero-parallax-bg");
+
+      if (heroSection && heroBg) {
+        window.addEventListener("scroll", () => {
+          requestAnimationFrame(() => {
+            const scrollY = window.scrollY;
+            const heroHeight = heroSection.offsetHeight;
+
+            if (scrollY <= heroHeight) {
+              const speed = 0.5;
+              heroBg.style.transform = `translateY(${scrollY * speed}px)`;
+            }
+          });
+        });
+      }
     </script>
   </body>
 </html>
