@@ -134,11 +134,22 @@
       }
 
       /* 3D Flip Card Utilities */
-        .perspective-1000 { perspective: 1000px; }
-        .preserve-3d { transform-style: preserve-3d; }
-        .backface-hidden { backface-visibility: hidden; -webkit-backface-visibility: hidden; }
-        .rotate-y-180 { transform: rotateY(180deg); }
-        .group.flipped .group-inner { transform: rotateY(180deg); }
+      .perspective-1000 {
+        perspective: 1000px;
+      }
+      .preserve-3d {
+        transform-style: preserve-3d;
+      }
+      .backface-hidden {
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+      }
+      .rotate-y-180 {
+        transform: rotateY(180deg);
+      }
+      .group.flipped .group-inner {
+        transform: rotateY(180deg);
+      }
     </style>
   </head>
   <body class="selection:bg-gold selection:text-black">
@@ -349,9 +360,10 @@
             O Ecossistema de Crescimento Empresarial Contínuo
           </p>
         </div>
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div class="flex flex-col lg:flex-row items-center gap-6">
+          <!-- Card 1: Provocação -->
           <div
-            class="bg-black/50 border border-white/10 p-8 rounded-xl hover:border-gold/50 transition-colors group fade-in-up delay-100"
+            class="w-full lg:flex-1 bg-black/50 border border-white/10 p-8 rounded-xl hover:border-gold/50 transition-colors group fade-in-up delay-100 h-full"
           >
             <div
               class="w-12 h-12 rounded-full bg-red-500/10 flex items-center justify-center mb-6"
@@ -373,8 +385,17 @@
               >
             </p>
           </div>
+
+          <!-- Arrow 1 -->
           <div
-            class="bg-black/50 border border-white/10 p-8 rounded-xl hover:border-gold/50 transition-colors group fade-in-up delay-200"
+            class="text-gold animate-pulse transform rotate-90 lg:rotate-0 flex-shrink-0 drop-shadow-[0_0_15px_#FFD000]"
+          >
+            <i data-lucide="arrow-right" class="w-8 h-8"></i>
+          </div>
+
+          <!-- Card 2: O Problema -->
+          <div
+            class="w-full lg:flex-1 bg-black/50 border border-white/10 p-8 rounded-xl hover:border-gold/50 transition-colors group fade-in-up delay-200 h-full"
           >
             <div
               class="w-12 h-12 rounded-full bg-orange-500/10 flex items-center justify-center mb-6"
@@ -398,8 +419,17 @@
               >
             </p>
           </div>
+
+          <!-- Arrow 2 -->
           <div
-            class="bg-gradient-to-b from-gold/10 to-black border border-gold p-8 rounded-xl shadow-[0_0_30px_rgba(198,168,90,0.1)] group fade-in-up delay-300"
+            class="text-gold animate-pulse transform rotate-90 lg:rotate-0 flex-shrink-0 drop-shadow-[0_0_15px_#FFD000]"
+          >
+            <i data-lucide="arrow-right" class="w-8 h-8"></i>
+          </div>
+
+          <!-- Card 3: A Solução -->
+          <div
+            class="w-full lg:flex-1 bg-gradient-to-b from-gold/10 to-black border border-gold p-8 rounded-xl shadow-[0_0_30px_rgba(198,168,90,0.1)] group fade-in-up delay-300 h-full"
           >
             <div
               class="w-12 h-12 rounded-full bg-gold/20 flex items-center justify-center mb-6"
