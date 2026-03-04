@@ -13,29 +13,24 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     <script>
       tailwind.config = {
-        theme: {
-          extend: {
-            fontFamily: {
-              sans: ["Inter", "sans-serif"],
-              serif: ["Playfair Display", "serif"],
-            },
-            colors: {
-              gold: "#C6A85A",
-              "gold-light": "#E5C56F",
-              "gold-neon": "#FFD000",
-            },
-            animation: {
-              "spin-slow": "spin 10s linear infinite",
-              "spin-reverse-slow": "spin 15s linear infinite reverse",
-              "spin-smooth": "spin 20s linear infinite",
-              "spin-reverse-smooth": "spin 25s linear infinite reverse",
-              "spin-very-slow": "spin 60s linear infinite",
-              "spin-reverse-very-slow": "spin 50s linear infinite reverse",
-              "pulse-slow": "pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite",
-            },
-          },
-        },
-      };
+            theme: {
+                extend: {
+                    fontFamily: { 
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif']
+                    },
+                    colors: { gold: '#C6A85A', 'gold-light': '#E5C56F', 'gold-neon': '#FFD000' },
+                    animation: {
+                        'spin-slow': 'spin 10s linear infinite',
+                        'spin-reverse-slow': 'spin 15s linear infinite reverse',
+                        'spin-smooth': 'spin 20s linear infinite',
+                        'spin-reverse-smooth': 'spin 25s linear infinite reverse',
+                        'spin-very-slow': 'spin 60s linear infinite',
+                        'spin-reverse-very-slow': 'spin 50s linear infinite reverse',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    }
+                }
+            }
     </script>
     <style>
       body {
@@ -2227,10 +2222,15 @@
       let currentEvent = 0;
       const carouselContainer = document.getElementById("events-carousel");
 
-      function renderEvent() {
+      function renderEvent(direction = "next") {
         const evt = events[currentEvent];
+        const animationClass =
+          direction === "next"
+            ? "animate-slide-in-right"
+            : "animate-slide-in-left";
+
         carouselContainer.innerHTML = `
-                <div class="grid grid-cols-1 md:grid-cols-2 min-h-[600px] animate-fade-in items-center gap-8 p-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 min-h-[600px] ${animationClass} items-center gap-8 p-8">
                     <!-- Vertical Video Card -->
                     <div class="relative w-full max-w-[320px] aspect-[9/16] mx-auto rounded-xl overflow-hidden cursor-pointer group border border-white/10 hover:border-gold transition-colors shadow-2xl" onclick="togglePlay(this)">
                         <video class="absolute inset-0 w-full h-full object-cover" poster="${evt.poster}" playsinline loop muted>
@@ -2264,13 +2264,29 @@
       }
       function nextEvent() {
         currentEvent = (currentEvent + 1) % events.length;
-        renderEvent();
+        renderEvent("next");
+        startCarousel();
       }
       function prevEvent() {
         currentEvent = (currentEvent - 1 + events.length) % events.length;
-        renderEvent();
+        renderEvent("prev");
+        startCarousel();
       }
+
+      let carouselInterval;
+      function startCarousel() {
+        stopCarousel();
+        carouselInterval = setInterval(() => {
+          currentEvent = (currentEvent + 1) % events.length;
+          renderEvent("next");
+        }, 5000);
+      }
+      function stopCarousel() {
+        clearInterval(carouselInterval);
+      }
+
       renderEvent();
+      startCarousel();
 
       // Hub Video Toggle
       window.toggleHubVideo = () => {
