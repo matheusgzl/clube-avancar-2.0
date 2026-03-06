@@ -209,9 +209,12 @@
         animation: slideInLeft 0.5s ease-out forwards;
       }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles-slim@2.0.6/tsparticles.slim.bundle.min.js"></script>
   </head>
 
   <body class="selection:bg-gold selection:text-black">
+    <!-- Particles Container -->
+    <div id="tsparticles" class="fixed inset-0 z-0 pointer-events-none"></div>
     <!-- Navbar -->
     <nav
       class="fixed top-0 left-0 right-0 z-50 bg-transparent py-3 transition-all duration-300"
@@ -855,7 +858,7 @@
     </section>
 
     <!-- Monthly Structure (Redesigned) -->
-    <section id="encontros" class="py-24 bg-black">
+    <section id="encontros" class="py-24 bg-transparent relative z-10">
       <div class="container mx-auto px-4">
         <div class="text-center mb-16 fade-in-up">
           <h2 class="text-4xl md:text-6xl font-serif font-bold text-white mb-4">
@@ -869,7 +872,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           <!-- Workshop -->
           <div
-            class="bg-neutral-900 border border-white/10 p-8 rounded-xl hover:border-gold transition-all duration-300 hover:scale-105 hover:shadow-lg group fade-in-up flex flex-col h-full"
+            class="bg-gradient-to-br from-white/10 via-white/5 to-transparent backdrop-blur-xl border border-white/20 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)] p-8 rounded-xl hover:border-gold transition-all duration-300 hover:scale-105 hover:shadow-lg group fade-in-up flex flex-col h-full"
           >
             <div
               class="w-14 h-14 bg-gold/10 rounded-xl flex items-center justify-center mb-6 text-gold group-hover:bg-gold group-hover:text-black transition-all shadow-[0_0_20px_rgba(198,168,90,0.2)]"
@@ -919,7 +922,7 @@
 
           <!-- Palestra -->
           <div
-            class="bg-neutral-900 border border-white/10 p-8 rounded-xl hover:border-gold transition-all duration-300 hover:scale-105 hover:shadow-lg group fade-in-up delay-100 flex flex-col h-full"
+            class="bg-gradient-to-br from-white/10 via-white/5 to-transparent backdrop-blur-xl border border-white/20 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)] p-8 rounded-xl hover:border-gold transition-all duration-300 hover:scale-105 hover:shadow-lg group fade-in-up delay-100 flex flex-col h-full"
           >
             <div
               class="w-14 h-14 bg-gold/10 rounded-xl flex items-center justify-center mb-6 text-gold group-hover:bg-gold group-hover:text-black transition-all shadow-[0_0_20px_rgba(198,168,90,0.2)]"
@@ -967,7 +970,7 @@
 
           <!-- Networking -->
           <div
-            class="bg-neutral-900 border border-white/10 p-8 rounded-xl hover:border-gold transition-all duration-300 hover:scale-105 hover:shadow-lg group fade-in-up delay-200 flex flex-col h-full"
+            class="bg-gradient-to-br from-white/10 via-white/5 to-transparent backdrop-blur-xl border border-white/20 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)] p-8 rounded-xl hover:border-gold transition-all duration-300 hover:scale-105 hover:shadow-lg group fade-in-up delay-200 flex flex-col h-full"
           >
             <div
               class="w-14 h-14 bg-gold/10 rounded-xl flex items-center justify-center mb-6 text-gold group-hover:bg-gold group-hover:text-black transition-all shadow-[0_0_20px_rgba(198,168,90,0.2)]"
@@ -1216,7 +1219,7 @@
     </section>
 
     <!-- Pricing -->
-    <section id="planos" class="py-24 bg-neutral-900">
+    <section id="planos" class="py-24 bg-transparent relative z-10">
       <div class="container mx-auto px-4">
         <div class="text-center mb-16 fade-in-up">
           <h2 class="text-4xl md:text-6xl font-serif font-bold text-white mb-4">
@@ -1229,7 +1232,7 @@
         >
           <!-- Mensal -->
           <div
-            class="bg-black border border-white/10 rounded-2xl p-8 flex flex-col relative hover:border-gold/50 transition-colors fade-in-up h-full"
+            class="bg-gradient-to-br from-white/10 via-white/5 to-transparent backdrop-blur-xl border border-white/20 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)] rounded-2xl p-8 flex flex-col relative hover:border-gold/50 transition-colors fade-in-up h-full"
           >
             <h3 class="text-xl font-bold text-white mb-2">Plano Mensal</h3>
             <div class="flex items-baseline gap-1 mb-6">
@@ -1331,7 +1334,7 @@
 
           <!-- Anual -->
           <div
-            class="bg-gradient-to-b from-gold/10 to-black border border-gold rounded-2xl p-8 flex flex-col relative shadow-[0_0_30px_rgba(198,168,90,0.1)] fade-in-up delay-100 h-full"
+            class="bg-gradient-to-br from-white/10 via-white/5 to-transparent backdrop-blur-xl border border-gold shadow-[0_0_30px_rgba(198,168,90,0.1),inset_0_1px_0_0_rgba(255,255,255,0.1)] rounded-2xl p-8 flex flex-col relative fade-in-up delay-100 h-full"
           >
             <div
               class="absolute top-0 right-0 bg-gold text-black text-xs font-bold px-3 py-1 rounded-bl-lg rounded-tr-lg"
@@ -2480,6 +2483,62 @@
           }
         });
       });
+
+      // Particles Init
+        (async () => {
+            await tsParticles.load("tsparticles", {
+                particles: {
+                    number: {
+                        value: 60,
+                        density: {
+                            enable: true,
+                            value_area: 800
+                        }
+                    },
+                    color: {
+                        value: "#ffffff"
+                    },
+                    shape: {
+                        type: "circle"
+                    },
+                    opacity: {
+                        value: 0.3,
+                        random: true,
+                    },
+                    size: {
+                        value: 2,
+                        random: true,
+                    },
+                    move: {
+                        enable: true,
+                        speed: 0.4,
+                        direction: "none",
+                        random: true,
+                        straight: false,
+                        out_modes: {
+                            default: "out"
+                        },
+                    },
+                    links: {
+                        enable: false
+                    }
+                },
+                interactivity: {
+                    events: {
+                        onhover: {
+                            enable: true,
+                            mode: "repulse"
+                        },
+                        onclick: {
+                            enable: true,
+                            mode: "push"
+                        },
+                        resize: true
+                    }
+                },
+                retina_detect: true
+            });
+        })();
     </script>
   </body>
 </html>
