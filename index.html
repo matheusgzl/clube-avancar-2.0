@@ -2307,8 +2307,7 @@
           title: "Formação Investidor Anjo",
           subtitle: "Investimento Anjo",
           desc: "Palestra sobre como se tornar um investidor anjo e identificar oportunidades de investimento promissoras.",
-          video:
-            "videos/formação Investidor anjo.mp4",
+          video: "videos/formação Investidor anjo.mp4",
           poster: "imagens/investidor anjo.png",
         },
       ];
@@ -2507,10 +2506,22 @@
       window.togglePlay = (card) => {
         const video = card.querySelector("video");
         const btn = card.querySelector(".play-btn");
+        const muteBtn = card.querySelector("button");
 
         if (video.paused) {
+          video.muted = false; // Unmute automatically on play
           video.play();
           btn.style.opacity = "0";
+
+          // Update mute button UI to reflect unmuted state
+          if (muteBtn) {
+            muteBtn.classList.add("bg-gold", "text-black");
+            const iconSize = muteBtn.classList.contains("w-10")
+              ? "w-5 h-5"
+              : "w-4 h-4";
+            muteBtn.innerHTML = `<i data-lucide="volume-2" class="${iconSize}"></i>`;
+            lucide.createIcons();
+          }
         } else {
           video.pause();
           btn.style.opacity = "1";
@@ -2518,18 +2529,19 @@
       };
 
       window.toggleMute = (btn) => {
-        const card = btn.closest("div");
+        const card = btn.closest('div[onclick^="togglePlay"]');
         const video = card.querySelector("video");
         const isActive = btn.classList.contains("bg-gold");
+        const iconSize = btn.classList.contains("w-10") ? "w-5 h-5" : "w-4 h-4";
 
         video.muted = !video.muted;
 
         if (isActive) {
           btn.classList.remove("bg-gold", "text-black");
-          btn.innerHTML = '<i data-lucide="volume-x" class="w-4 h-4"></i>';
+          btn.innerHTML = `<i data-lucide="volume-x" class="${iconSize}"></i>`;
         } else {
           btn.classList.add("bg-gold", "text-black");
-          btn.innerHTML = '<i data-lucide="volume-2" class="w-4 h-4"></i>';
+          btn.innerHTML = `<i data-lucide="volume-2" class="${iconSize}"></i>`;
         }
         lucide.createIcons();
       };
