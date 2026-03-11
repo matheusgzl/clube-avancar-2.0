@@ -357,6 +357,11 @@
             background-position: center bottom;
             background-repeat: no-repeat;
             background-attachment: fixed;
+
+            -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
           "
         ></div>
         <div
@@ -439,7 +444,10 @@
             poster="imagens/poster_vertical_clube_avancar.png"
             playsinline
           >
-            <source src="videos/video_clube_avancar (1) (1) (1) (1).mp4" type="video/mp4" />
+            <source
+              src="videos/video_clube_avancar (1) (1) (1) (1).mp4"
+              type="video/mp4"
+            />
             Seu navegador não suporta a reprodução de vídeos.
           </video>
 
@@ -2347,6 +2355,30 @@
         }
       };
 
+      // Clube Video Toggle
+        window.toggleClubeVideo = () => {
+            const desktopVideo = document.getElementById('clube-video-desktop');
+            const mobileVideo = document.getElementById('clube-video-mobile');
+            const overlay = document.getElementById('clube-video-overlay');
+            
+            // Detecta qual vídeo está visível (baseado no CSS do Tailwind)
+            const video = window.getComputedStyle(desktopVideo).display !== 'none' ? desktopVideo : mobileVideo;
+            
+            if (video && video.paused) {
+                const playPromise = video.play();
+                
+                // Captura o erro caso o vídeo seja um link falso/placeholder (evita travar o script)
+                if (playPromise !== undefined) {
+                    playPromise.catch(error => {
+                        console.warn("O vídeo não pôde ser reproduzido. Verifique se o link do arquivo .mp4 é válido.", error);
+                    });
+                }
+                
+                overlay.classList.add('opacity-0', 'pointer-events-none');
+                video.setAttribute('controls', 'true');
+            }
+        };
+
       // Testimonials (Reels with Video Controls)
       const reels = [
         {
@@ -2506,7 +2538,8 @@
 
             if (scrollY <= heroHeight) {
               const speed = 0.5;
-              heroBg.style.transform = `translateY(${scrollY * speed}px)`;
+              heroBg.style.transform = `translate3d(0, ${scrollY * speed}px, 0)`;
+              heroBg.style.webkitTransform = `translate3d(0, ${scrollY * speed}px, 0)`;
             }
           });
         });
