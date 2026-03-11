@@ -1935,10 +1935,17 @@
     </section>
 
     <!-- Footer -->
-    <footer id="contato" class="bg-black py-16 border-t border-white/10">
+    <footer
+      id="contato"
+      class="bg-black py-16 border-t border-white/10 relative z-10"
+    >
       <div class="container mx-auto px-4">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
-          <div class="text-center md:text-left">
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12 mb-12"
+        >
+          <div
+            class="text-center md:text-left md:col-span-2 lg:col-span-1 mb-4 lg:mb-0"
+          >
             <div
               class="flex items-center justify-center md:justify-start gap-3 mb-6"
             >
@@ -1953,53 +1960,57 @@
                 >Clube <span class="text-gold">Avançar</span></span
               >
             </div>
-            <p class="text-neutral-400 text-sm leading-relaxed">
+            <p
+              class="text-neutral-400 text-sm leading-relaxed md:max-w-xl lg:max-w-none mx-auto md:mx-0"
+            >
               A porta de entrada para se conectar ao maior Hub de Negócios,
               Educação, Desenvolvimento e Tecnologia do interior de SP.
             </p>
           </div>
-          <div class="text-center">
+          <div class="text-center md:text-left lg:text-center">
             <h4 class="text-white font-bold uppercase tracking-widest mb-6">
               Contato
             </h4>
-            <div class="flex flex-col gap-4 items-center">
+            <div
+              class="flex flex-col gap-4 items-center md:items-start lg:items-center"
+            >
               <a
                 href="#"
-                class="flex items-center gap-2 text-neutral-400 hover:text-gold transition-colors"
+                class="flex items-center gap-2 text-sm md:text-base text-neutral-400 hover:text-gold transition-colors"
                 ><i data-lucide="phone" class="w-4 h-4"></i> (11) 99999-9999</a
               >
               <a
                 href="#"
-                class="flex items-center gap-2 text-neutral-400 hover:text-gold transition-colors"
+                class="flex items-center gap-2 text-sm md:text-base text-neutral-400 hover:text-gold transition-colors"
                 ><i data-lucide="mail" class="w-4 h-4"></i>
                 contato@clubeavancar.com.br</a
               >
               <a
-                href="#"
-                class="flex items-center gap-2 text-neutral-400 hover:text-gold transition-colors"
-                ><i data-lucide="map-pin" class="w-4 h-4"></i> Av. Paulista,
-                1000 - SP</a
+                href="https://maps.app.goo.gl/B9UdThBAvew3YR479"
+                class="flex items-center justify-center md:justify-start lg:justify-center gap-2 text-sm md:text-base text-neutral-400 hover:text-gold transition-colors whitespace-nowrap" target="_blank"
+                ><i data-lucide="map-pin" class="w-4 h-4 flex-shrink-0"></i>
+                <span>Av. Nossa Senhora de Fátima, 361. Americana - SP</span></a
               >
             </div>
           </div>
-          <div class="text-center md:text-right">
+          <div class="text-center md:text-right mt-8 md:mt-0">
             <h4 class="text-white font-bold uppercase tracking-widest mb-6">
               Redes Sociais
             </h4>
             <div class="flex gap-4 justify-center md:justify-end">
               <a
-                href="#"
-                class="w-10 h-10 rounded-full bg-neutral-900 flex items-center justify-center text-white hover:bg-gold hover:text-black transition-all"
+                href="https://www.instagram.com/hubavancar/"
+                class="w-10 h-10 rounded-full bg-neutral-900 flex items-center justify-center text-white hover:bg-gold hover:text-black transition-all" target="_blank"
                 ><i data-lucide="instagram" class="w-5 h-5"></i
               ></a>
               <a
-                href="#"
-                class="w-10 h-10 rounded-full bg-neutral-900 flex items-center justify-center text-white hover:bg-gold hover:text-black transition-all"
-                ><i data-lucide="linkedin" class="w-5 h-5"></i
+                href="https://www.facebook.com/profile.php?id=61568758134868&mibextid=LQQJ4d&rdid=cEdI6Pxv7OG9aKNF&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1DUtVTC1az%2F%3Fmibextid%3DLQQJ4d"
+                class="w-10 h-10 rounded-full bg-neutral-900 flex items-center justify-center text-white hover:bg-gold hover:text-black transition-all" target="_blank"
+                ><i data-lucide="facebook" class="w-5 h-5"></i
               ></a>
               <a
-                href="#"
-                class="w-10 h-10 rounded-full bg-neutral-900 flex items-center justify-center text-white hover:bg-gold hover:text-black transition-all"
+                href="https://www.youtube.com/@ClubeAltaPerformance"
+                class="w-10 h-10 rounded-full bg-neutral-900 flex items-center justify-center text-white hover:bg-gold hover:text-black transition-all" target="_blank"
                 ><i data-lucide="youtube" class="w-5 h-5"></i
               ></a>
             </div>
@@ -2007,7 +2018,7 @@
         </div>
         <div class="text-center pt-8 border-t border-white/5">
           <p class="text-neutral-600 text-sm">
-            © 2024 Clube Avançar. Todos os direitos reservados.
+            © 2026 Clube Avançar. Todos os direitos reservados.
           </p>
         </div>
       </div>
