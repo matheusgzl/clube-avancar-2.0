@@ -1084,26 +1084,40 @@
     </section>
 
     <!-- Hub Video Section -->
-    <section class="py-24 bg-black">
+    <section class="py-24 bg-transparent relative z-10">
       <div class="container mx-auto px-4">
         <div class="text-center mb-12 fade-in-up">
           <h2 class="text-4xl md:text-6xl font-serif font-bold text-white mb-4">
-            Conheça o <span class="text-gold">Hub Avançar</span>
+            O <span class="text-gold">Hub Avançar</span>
           </h2>
           <p class="text-neutral-400 max-w-2xl mx-auto">
-            O ecossistema onde empresários evoluem juntos.
+            Uma estrutura completa pensada para o seu crescimento.
           </p>
         </div>
         <div
-          class="relative w-full aspect-video max-w-5xl mx-auto rounded-2xl overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.5)] border border-white/10 group fade-in-up"
+          class="relative w-full aspect-[9/16] max-w-sm md:max-w-5xl md:aspect-video mx-auto rounded-2xl overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.5)] border border-white/10 group fade-in-up"
         >
+          <!-- Desktop Video (Horizontal) -->
           <video
-            id="hub-main-video"
-            class="w-full h-full object-cover"
-            poster="imagens/externo.jpg"
+            id="hub-video-desktop"
+            class="hidden md:block w-full h-full object-cover"
+            poster="imagens/— Visualização define o destino.Planejamento organiza o caminho.Execução transforma intenção em .jpg"
             playsinline
           >
             <source src="videos/vídeo sobre o HUB (1).mp4" type="video/mp4" />
+            Seu navegador não suporta a reprodução de vídeos.
+          </video>
+          <!-- Mobile Video (Vertical) -->
+          <video
+            id="hub-video-mobile"
+            class="block md:hidden w-full h-full object-cover"
+            poster="imagens/placeholder_vertical_hub_avancar.png"
+            playsinline
+          >
+            <source
+              src="videos/— O HUB Avançar nasce para quem cansou de operar no modo sobrevivência.Aqui, visão vira estratég.mp4"
+              type="video/mp4"
+            />
             Seu navegador não suporta a reprodução de vídeos.
           </video>
 
@@ -2289,6 +2303,14 @@
             "videos/⸻Equity não é só participação.Equity é estratégia.Pensar equity é pensar em valor de mercado,é c.mp4",
           poster: "imagens/placeholder_equity.png",
         },
+        {
+          title: "Formação Investidor Anjo",
+          subtitle: "Investimento Anjo",
+          desc: "Palestra sobre como se tornar um investidor anjo e identificar oportunidades de investimento promissoras.",
+          video:
+            "videos/formação Investidor anjo.mp4",
+          poster: "imagens/investidor anjo.png",
+        },
       ];
       let currentEvent = 0;
       const carouselContainer = document.getElementById("events-carousel");
@@ -2346,74 +2368,99 @@
 
       // Hub Video Toggle
       window.toggleHubVideo = () => {
-        const video = document.getElementById("hub-main-video");
+        const desktopVideo = document.getElementById("hub-video-desktop");
+        const mobileVideo = document.getElementById("hub-video-mobile");
         const overlay = document.getElementById("hub-video-overlay");
-        if (video.paused) {
-          video.play();
+
+        // Detecta qual vídeo está visível (baseado no CSS do Tailwind)
+        const video =
+          window.getComputedStyle(desktopVideo).display !== "none"
+            ? desktopVideo
+            : mobileVideo;
+
+        if (video && video.paused) {
+          const playPromise = video.play();
+
+          // Captura o erro caso o vídeo seja um link falso/placeholder (evita travar o script)
+          if (playPromise !== undefined) {
+            playPromise.catch((error) => {
+              console.warn(
+                "O vídeo não pôde ser reproduzido. Verifique se o link do arquivo .mp4 é válido.",
+                error,
+              );
+            });
+          }
+
           overlay.classList.add("opacity-0", "pointer-events-none");
           video.setAttribute("controls", "true");
         }
       };
 
       // Clube Video Toggle
-        window.toggleClubeVideo = () => {
-            const desktopVideo = document.getElementById('clube-video-desktop');
-            const mobileVideo = document.getElementById('clube-video-mobile');
-            const overlay = document.getElementById('clube-video-overlay');
-            
-            // Detecta qual vídeo está visível (baseado no CSS do Tailwind)
-            const video = window.getComputedStyle(desktopVideo).display !== 'none' ? desktopVideo : mobileVideo;
-            
-            if (video && video.paused) {
-                const playPromise = video.play();
-                
-                // Captura o erro caso o vídeo seja um link falso/placeholder (evita travar o script)
-                if (playPromise !== undefined) {
-                    playPromise.catch(error => {
-                        console.warn("O vídeo não pôde ser reproduzido. Verifique se o link do arquivo .mp4 é válido.", error);
-                    });
-                }
-                
-                overlay.classList.add('opacity-0', 'pointer-events-none');
-                video.setAttribute('controls', 'true');
-            }
-        };
+      window.toggleClubeVideo = () => {
+        const desktopVideo = document.getElementById("clube-video-desktop");
+        const mobileVideo = document.getElementById("clube-video-mobile");
+        const overlay = document.getElementById("clube-video-overlay");
+
+        // Detecta qual vídeo está visível (baseado no CSS do Tailwind)
+        const video =
+          window.getComputedStyle(desktopVideo).display !== "none"
+            ? desktopVideo
+            : mobileVideo;
+
+        if (video && video.paused) {
+          const playPromise = video.play();
+
+          // Captura o erro caso o vídeo seja um link falso/placeholder (evita travar o script)
+          if (playPromise !== undefined) {
+            playPromise.catch((error) => {
+              console.warn(
+                "O vídeo não pôde ser reproduzido. Verifique se o link do arquivo .mp4 é válido.",
+                error,
+              );
+            });
+          }
+
+          overlay.classList.add("opacity-0", "pointer-events-none");
+          video.setAttribute("controls", "true");
+        }
+      };
 
       // Testimonials (Reels with Video Controls)
       const reels = [
         {
-          name: "Carlos Silva",
-          role: "CEO Tech",
-          video: "videos/depoimento cafe lalau.mp4",
-          poster: "imagens/placeholder_cafe_lalau.png",
+          name: "Rafael Marques",
+          role: "Fundador Café Lalu",
+          video: "videos/depoimento cafe lalu.mp4",
+          poster: "imagens/placeholder_cafe_lalu.png",
         },
         {
           name: "Guilherme Freitas",
-          role: "Diretora",
+          role: "CEO Hub Avançar",
           video: "videos/depoimento Gui.mp4",
           poster: "imagens/placeholder_gui.png",
         },
         {
-          name: "Roberto Lima",
-          role: "Fundador",
+          name: "Carlos Rogério",
+          role: "Co-fundador e CEO da Hiped Invest",
           video: "videos/depoimento hiped invest.mp4",
           poster: "imagens/placeholder_hiped.png",
         },
         {
           name: "Isaias Pires",
-          role: "Investidora",
+          role: "Diretor executivo e Comercial do Rafa Marcos e Izabor Cruz",
           video: "videos/depoimento isaias pires.mp4",
           poster: "imagens/placeholder_isaias_pires.png",
         },
         {
           name: "Leo Marião",
-          role: "Agro",
+          role: "CEO Hub Avançar",
           video: "videos/depoimento leo marião.mp4",
           poster: "imagens/placeholder_leo.png",
         },
         {
           name: "Luiz Otavio",
-          role: "Startups",
+          role: "Especialista Comportamental",
           video: "videos/depoimento Luiz otavio.mp4",
           poster: "imagens/placeholder_luis_otavio.png",
         },
@@ -2424,8 +2471,8 @@
           poster: "imagens/placeholder_rogerio_vale.png",
         },
         {
-          name: "Fernanda Lima",
-          role: "Saúde",
+          name: "Gabryelle Ribeiro",
+          role: "Apresentadora",
           video: "videos/sobre a inauguração.mp4",
           poster: "imagens/placeholder_sobre.png",
         },
