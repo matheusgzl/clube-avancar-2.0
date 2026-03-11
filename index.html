@@ -1219,23 +1219,23 @@
     </section>
 
     <!-- Testimonials (Reels) -->
-    <section class="py-24 bg-black overflow-hidden">
+    <section class="py-24 bg-transparent relative z-10 overflow-hidden">
       <div class="container mx-auto px-4 mb-12">
         <h2
           class="text-4xl md:text-6xl font-serif font-bold text-white mb-2 text-center"
         >
-          Empresários que decidiram <span class="text-gold">evoluir</span>.
+          O que dizem nossos <span class="text-gold">membros</span>
         </h2>
       </div>
-      <div class="flex flex-col gap-8">
+      <div class="flex flex-col gap-8 px-4 md:px-0">
         <!-- Top Row -->
         <div
-          class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 justify-center max-w-7xl mx-auto w-full slide-in-left"
+          class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 justify-center max-w-7xl mx-auto w-full slide-in-left"
           id="testimonials-top"
         ></div>
         <!-- Bottom Row -->
         <div
-          class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 justify-center max-w-7xl mx-auto w-full slide-in-right"
+          class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 justify-center max-w-7xl mx-auto w-full slide-in-right"
           id="testimonials-bottom"
         ></div>
       </div>
@@ -2524,8 +2524,9 @@
       ];
 
       function createReelCard(reel, index) {
+        // Added 'fade-in-up' class and delay
         return `
-                <div class="relative w-full aspect-[9/16] rounded-xl overflow-hidden cursor-pointer group border border-white/10 hover:border-gold transition-colors" onclick="togglePlay(this)">
+                <div class="relative w-full aspect-[9/16] rounded-xl overflow-hidden cursor-pointer group border border-white/10 hover:border-gold transition-colors fade-in-up" style="transition-delay: ${index * 100}ms" onclick="togglePlay(this)">
                     <video class="absolute inset-0 w-full h-full object-cover" poster="${reel.poster}" playsinline loop muted>
                         <source src="${reel.video}" type="video/mp4">
                     </video>
